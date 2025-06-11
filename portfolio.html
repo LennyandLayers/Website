@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Lenny & Layers</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <style>
+    .portfolio-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .portfolio-intro {
+      flex: 1 1 300px;
+      min-width: 260px;
+    }
+
+    .portfolio-grid {
+      flex: 2 1 600px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background-color: #1c2a3a;
+      border: 1px solid #dcbd66;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-layout {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container flex justify-between items-center" style="padding: 20px 0;">
+      <div>
+        <div class="logo-container">
+  <img src="images/icon.jpg" alt="Lenny & Layers Icon">
+  <h1 class="heading-gold">Lenny & Layers</h1>
+</div>
+
+      </div>
+      <ul class="flex gap-4">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact_us.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Portfolio Grid Layout -->
+  <section class="portfolio-layout">
+    <!-- Left: Intro Content -->
+    <div class="portfolio-intro">
+      <h1>Stories we’ve layered into life.</h1>
+      <p>Every project is a deep dive into a brand’s soul—crafted with flair, strategy, and storytelling. See the layers unfold.</p>
+      <a href="contact_us.html" class="button" style="margin-top: 16px;">Start a Project</a>
+    </div>
+
+    <!-- Right: Project Grid -->
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <h3>AfriThrive</h3>
+        <p>Brand Identity & Web Refresh<br><small>Tags: Branding / Web / Strategy</small></p>
+      </div>
+      <div class="project-card">
+        <h3>Woven Words</h3>
+        <p>Book Launch Campaign<br><small>Tags: Campaign / Print / Social</small></p>
+      </div>
+      <div class="project-card">
+        <h3>Studio Astra</h3>
+        <p>Digital Presence Build<br><small>Tags: Visual Identity / Web / Motion</small></p>
+      </div>
+      <div class="project-card">
+        <h3>Coming Soon</h3>
+        <p>More cinematic brands in the making</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="text-center">
+    <h2>What clients say</h2>
+    <blockquote>“Lenny understood our story before we did.” — Client A</blockquote>
+    <blockquote>“A total rebrand that feels like home.” — Client B</blockquote>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <p>Got a vision worth showcasing? Let’s turn your idea into a story worth telling.</p>
+    <a href="contact_us.html" class="button">Start a Project</a>
+    <a href="contact_us.html" class="button secondary">Contact Me</a>
+  </footer>
+
+</body>
+</html>
