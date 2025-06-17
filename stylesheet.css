@@ -49,23 +49,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Navigation */
-nav ul {
-  list-style: none;
-}
-
-nav ul li a {
-  font-size: 1.1rem;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-family: 'Times New Roman', serif;
-}
-
-nav ul li a:hover {
-  background-color: rgba(220, 189, 102, 0.15);
-}
-
-/* Dropdown */
 .nav-dropdown {
   position: relative;
   font-family: 'Times New Roman', serif;
@@ -75,53 +58,83 @@ nav ul li a:hover {
   font-size: 24px;
   cursor: pointer;
   user-select: none;
+  color: #dcbd66;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dropdown-list {
   display: none;
   position: absolute;
-  top: 35px;
+  top: 50px;
   right: 0;
-  background: white;
+  background: #102338;
   list-style: none;
   padding: 10px 0;
   margin: 0;
+  border: #dcbd66 2px solid;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 160px;
+  width: 180px;
+  z-index: 1002;
+}
+
+.dropdown-list li a {
+  display: block;
+  padding: 10px 16px;
+  color: #dcbd66;
+  text-decoration: none;
+}
+
+.dropdown-list li a:hover {
+  background-color: #dcbd66;
+  color: #0d1b2a;
 }
 
 #toggle-menu:checked + label + .dropdown-list {
   display: block;
 }
 
+
 /* Buttons */
-.button, button {
+button,
+.button {
   background-color: #dcbd66;
   color: #0d1b2a;
-  padding: 10px 20px;
-  font-family: 'Bebas Neue', cursive;
-  text-transform: uppercase;
-  font-size: 1rem;
+  padding: 8px 15px;
   border: none;
   border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
+  font-family: 'Bebas Neue', cursive;
+  text-transform: uppercase;
   letter-spacing: 1px;
-  transition: background 0.3s ease;
+  display: inline-block;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 10px;
+
+  /* Button width tweaks */
+  width: auto;
+  white-space: nowrap;
 }
 
 .button.secondary {
   background-color: transparent;
   color: #dcbd66;
   border: 2px solid #dcbd66;
+
+  /* Button width tweaks */
+  width: auto;
+  white-space: nowrap;
 }
 
-.button:hover,
-.button.secondary:hover,
-button:hover {
-  background-color: #c5a953;
+.button.secondary:hover {
+  background-color: #dcbd66;
   color: #0d1b2a;
 }
+
 
 /* Hero & Section Backgrounds */
 .hero-section,
