@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&family=Playfair+Display:wght@400;700&display=swap');
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0d1b2a;
+  color: #f4f1ea;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+section, footer {
+  margin-bottom: 80px;
+  padding: 60px 24px;
+}
+
+h1, h2, h3 {
+  color: #dcbd66;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+
+p, li {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: #f4f1ea;
+}
+
+ul, ol {
+  padding-left: 24px;
+}
+
+a {
+  color: #dcbd66;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+}
+
+nav ul li a {
+  font-size: 1.1rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Times New Roman', serif;
+}
+
+nav ul li a:hover {
+  background-color: rgba(220, 189, 102, 0.15);
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: relative;
+  font-family: 'Times New Roman', serif;
+}
+
+.nav-dropdown-icon {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdown-list {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 160px;
+}
+
+#toggle-menu:checked + label + .dropdown-list {
+  display: block;
+}
+
+/* Buttons */
+.button, button {
+  background-color: #dcbd66;
+  color: #0d1b2a;
+  padding: 10px 20px;
+  font-family: 'Bebas Neue', cursive;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.3s ease;
+}
+
+.button.secondary {
+  background-color: transparent;
+  color: #dcbd66;
+  border: 2px solid #dcbd66;
+}
+
+.button:hover,
+.button.secondary:hover,
+button:hover {
+  background-color: #c5a953;
+  color: #0d1b2a;
+}
+
+/* Hero & Section Backgrounds */
+.hero-section,
+.services-section,
+.portfolio-section,
+.about-section,
+.aportfolio-section,
+.bportfolio-section,
+.contact-layout {
+  background-image: url('images/hero_background.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #f4f1ea;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 24px;
+  position: relative;
+}
+
+.hero-section { min-height: 80vh; }
+.services-section { min-height: 80vh; }
+.portfolio-section { min-height: 80vh; }
+.aportfolio-section { min-height: 75vh; }
+.bportfolio-section { min-height: 50vh; }
+.about-section { min-height: 80vh; }
+.contact-layout { min-height: 65vh; }
+
+.section-divider {
+  height: 60px;
+  background-color: transparent;
+}
+
+.content-overlay {
+  background: transparent;
+  border-radius: 12px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: #ccc;
+}
+
+.social-icons {
+  margin: 20px 0;
+}
+
+.social-icons a {
+  color: #dcbd66;
+  font-size: 24px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #f4f1ea;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.project-card {
+  background-color: #1c2a3a;
+  border: 1px solid #dcbd66;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+}
+
+/* Services */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background-color: #1c2a3a;
+  border: 1px solid #dcbd66;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.service-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-card-link .service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* Workflow Grid */
+.workflow-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .workflow-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .workflow-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tables */
+.two-column-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Contact Page */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px;
+  border-radius: 8px;
+  border: 2px solid #dcbd66;
+  font-family: inherit;
+  background-color: #1c2a3a;
+  color: #ffffff;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #dcbd66;
+}
+
+.contact-form button {
+  background-color: #dcbd66;
+  color: #0d1b2a;
+  font-weight: bold;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #c5a953;
+}
+
+.contact-icons {
+  margin-top: 40px;
+}
+
+.contact-icons h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: #dcbd66;
+}
+
+.social-contact-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.social-contact-icons a {
+  font-size: 24px;
+  color: #102338;
+  background-color: #dcbd66;
+  padding: 12px;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.social-contact-icons a:hover {
+  background-color: #c4c4c4;
+  color: white;
+}
+
+
+.portfolio-part {
+  background-color: #1c2a3a;
+  border: 1px solid #dcbd66;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-part:hover {
+  transform: scale(1.03);
+}
