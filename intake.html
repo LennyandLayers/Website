@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Client Intake | Lenny and Layers</title>
   <meta name="description" content="Lenny and Layers - Client Project Intake Form" />
   <link rel="icon" href="images/favicon.png" type="image/png" />
@@ -39,16 +38,18 @@
     }
 
     .question {
-  font-size: 2rem;
-  margin-bottom: 24px;
-  color: #f4f1ea;
-  font-weight: 600;
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  border-bottom: 1px solid #dcbd66;
-  padding-bottom: 10px;
-}
+      font-size: 2rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      color: #f4f1ea;
+      text-align: center;
+      margin-bottom: 12px;
+    }
 
+    textarea::placeholder {
+      color: #dcbd66;
+      opacity: 0.8;
+    }
 
     textarea, input[type="email"] {
       width: 100%;
@@ -129,7 +130,6 @@
   <div class="question-container">
     <h1>Client Intake Questionnaire</h1>
 
-    <!-- Progress Bar -->
     <div class="progress-bar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -137,7 +137,7 @@
 
     <form id="intakeForm">
       <div id="questionBox">
-        <!-- Dynamic question content -->
+        <!-- Questions injected here -->
       </div>
       <button type="submit" style="display: none;" id="submitBtn">Submit</button>
     </form>
@@ -171,27 +171,25 @@
       "📋 Who is the main point of contact?",
       "Who will be approving the final design?",
       "How involved would you like to be in the design process? (Hands-off, Collaborative, Step-by-step)",
-      "Is there anything else you’d like to share that would help make this a success?"
+      "Is there anything else you’d like to share/specify that would help make this a success?"
     ];
 
     let current = 0;
     const answers = [];
-
     const questionBox = document.getElementById('questionBox');
     const progressFill = document.getElementById('progressFill');
 
     function updateProgress() {
-  const percentage = Math.round((current / questions.length) * 100);
-  progressFill.style.width = `${percentage}%`;
-  document.getElementById('progressText').textContent = `${current + 1} of ${questions.length} answered`;
-}
-
+      const percent = Math.round((current / questions.length) * 100);
+      progressFill.style.width = `${percent}%`;
+      document.getElementById('progressText').textContent = `${current + 1} / ${questions.length}`;
+    }
 
     function showQuestion(index) {
       const existingAnswer = answers[index]?.answer || "";
       questionBox.innerHTML = `
         <label class="question">${questions[index]}</label>
-        <textarea required>${existingAnswer}</textarea>
+        <textarea required placeholder="ANSWER HERE">${existingAnswer}</textarea>
         <div class="nav-buttons">
           ${index > 0 ? `<button type="button" onclick="previousQuestion()">Previous</button>` : `<div></div>`}
           <button type="button" onclick="nextQuestion()">Next</button>
@@ -244,7 +242,6 @@
 
       form.innerHTML = `
         <input type="hidden" name="message" value="${message.replace(/"/g, '&quot;')}" />
-        <input type="hidden" name="_redirect" value="https://lennyandlayers.pro/thankyou.html" />
         <input type="email" name="email" placeholder="Your Email (for follow-up)" required />
         <button type="submit">Submit</button>
       `;
@@ -252,6 +249,30 @@
       form.setAttribute("action", "https://formspree.io/f/mzzgvdvy");
       form.setAttribute("method", "POST");
       progressFill.style.width = `100%`;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = "thankyou.html";
+          } else {
+            alert("Something went wrong. Please try again.");
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert("Submission failed. Please try again later.");
+        });
+      });
     }
 
     showQuestion(current);
