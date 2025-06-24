@@ -576,11 +576,10 @@
 
   let current = 0;
   const answers = [];
-
-  const questionBox = document.getElementById('questionBox');
-  const form = document.getElementById('intakeForm');
-  const progressFill = document.getElementById('progressFill');
-  const progressText = document.getElementById('progressText');
+  const questionBox = document.getElementById("questionBox");
+  const progressFill = document.getElementById("progressFill");
+  const progressText = document.getElementById("progressText");
+  const form = document.getElementById("intakeForm");
 
   function updateProgress() {
     const percentage = Math.round((current / questions.length) * 100);
@@ -589,31 +588,32 @@
   }
 
   function showQuestion(index) {
-  const currentQ = questions[index];
-  const selectedAnswer = answers[index]?.answer || "";
+    const currentQ = questions[index];
+    const selectedAnswer = answers[index]?.answer || "";
 
-  const optionsHtml = currentQ.options.map(option =>
-    `<button type="button" class="option-btn ${selectedAnswer === option ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`
-  ).join('');
+    const optionsHtml = currentQ.options
+      .map(option => {
+        const isSelected = selectedAnswer === option;
+        return `<button type="button" class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`;
+      })
+      .join("");
 
-  questionBox.innerHTML = `
-    <label class="question">${currentQ.q}</label>
-    <div class="options-container">${optionsHtml}</div>
-    <div class="nav-buttons" style="margin-top: 20px; justify-content: center;">
-      ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
-    </div>
-  `;
+    questionBox.innerHTML = `
+      <label class="question">${currentQ.q}</label>
+      <div class="options-container">${optionsHtml}</div>
+      <div class="nav-buttons" style="margin-top: 20px; justify-content: center;">
+        ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
+      </div>
+    `;
 
-  updateProgress();
-}
-
+    updateProgress();
+  }
 
   function selectOption(answer) {
     answers[current] = {
       question: questions[current].q,
       answer: answer
     };
-
     current++;
     if (current < questions.length) {
       showQuestion(current);
@@ -636,49 +636,41 @@
     });
 
     questionBox.innerHTML = `
-  <label class="question">You're almost done! Please provide your email so we can follow up:</label>
-  <div class="form-end">
-    <input type="hidden" name="message" value="${message.replace(/"/g, '&quot;')}" />
-    <input type="email" name="email" placeholder="Your Email (for follow-up)" required />
-    <button type="submit">Submit</button>
-  </div>
-  <div class="nav-buttons">
-    <button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>
-  </div>
-`;
+      <label class="question">You're almost done! Please provide your email so we can follow up:</label>
+      <input type="hidden" name="message" value="${message.replace(/"/g, '&quot;')}" />
+      <input type="email" name="email" placeholder="Your Email (for follow-up)" required style="width: 100%; padding: 14px; margin: 16px 0; border-radius: 8px; border: 1px solid #dcbd66; background: #1c2a3a; color: #fff;" />
+      <button type="submit" class="option-btn" style="display: block; margin: 0 auto;">Submit</button>
+      <div class="nav-buttons" style="margin-top: 20px; justify-content: center;">
+        <button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>
+      </div>
+    `;
 
     form.setAttribute("action", "https://formspree.io/f/mzzgvdvy");
     form.setAttribute("method", "POST");
 
-    // Rebind the submit listener after replacing innerHTML
-    form.addEventListener("submit", function handleSubmit(e) {
+    // ✅ Re-attach submit event handler after innerHTML update
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-
       const formData = new FormData(form);
       fetch(form.action, {
         method: "POST",
         body: formData,
         headers: {
-          Accept: "application/json",
-        },
-      }).then((response) => {
+          Accept: "application/json"
+        }
+      }).then(response => {
         if (response.ok) {
           window.location.href = "thankyou.html";
         } else {
           alert("Oops! Something went wrong.");
         }
       });
-
-      // Cleanup to prevent duplicate submissions
-      form.removeEventListener("submit", handleSubmit);
     });
   }
 
-  // Kick it off
+  // Initialize
   showQuestion(current);
 </script>
-
-
 
 </body>
 </html>
