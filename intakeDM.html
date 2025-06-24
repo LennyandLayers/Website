@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Marketing Intake | Lenny and Layers</title>
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: url('images/hero_background.jpg') no-repeat center center/cover;
+      color: #f4f1ea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .question-container {
+      max-width: 800px;
+      width: 90%;
+      background: rgba(13, 27, 42, 0.85);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #dcbd66;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .question {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-family: 'Playfair Display', serif;
+    }
+    label.option {
+      display: block;
+      background: #1c2a3a;
+      border: 1px solid #dcbd66;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 8px 0;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    label.option:hover {
+      background: #2d3f56;
+    }
+   
+    input[type="email"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #dcbd66;
+  background: #1c2a3a;
+  color: #fff;
+  font-size: 1rem;
+  resize: none; 
+  max-width: 90%;  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    button {
+      background: #dcbd66;
+      align-self: center;
+      color: #0d1b2a;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.1rem;
+      cursor: pointer;
+      min-width: 120px;
+    }
+    button:hover {
+      background: #c4c4c4;
+    }
+    .progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #2a3d56;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0 auto 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #dcbd66;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+#progressText {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  color: #dcbd66;
+}
+
+    @media (max-width: 600px) {
+      .nav-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+    .options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.option-btn {
+  background: #dcbd66;
+  color: #0d1b2a;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.option-btn:hover {
+  background-color: #c4c4c4;
+  text-decoration: black underline;
+}
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  align-items: center;
+}
+.form-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.form-end input[type="email"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #dcbd66;
+  background: #1c2a3a;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.form-end button[type="submit"] {
+  max-width: 200px;
+  width: 100%;
+}
+.option-btn.selected {
+  background-color: #c4c4c4;
+  color: #0d1b2a;
+  font-weight: bold;
+  border: 2px solid #dcbd66;
+}
+
+
+</style>
+</head>
+
+<body>
+  <div class="question-container">
+    <h1>Digital Marketing Questionnaire</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <form id="quizForm">
+    <p id="progressText"></p>
+      <div id="questionBox"></div>
+    </form>
+  
+
+  <form id="intakeForm">
+  <div id="questionBox"></div>
+</form>
+</div>
+
+ <script>
+      const questions = [
+{
+  q: "1.What are the primary business objectives that should align with your social media strategy?",
+  options: [
+   "Brand Awareness",
+   "Lead Generation",
+   "Sales or Conversions",
+   "Customer Service & Engagement"]
+},
+{
+  q: "2.How do you define clear, measurable goals for your social media efforts?",
+  options: [
+    "Increase engagement", 
+    "Grow followers", 
+    "Boost website traffic",
+    "Increase conversions"]
+},
+{
+  q: "3.What specific, time-bound targets are you setting?",
+  options: [
+   "Grow Instagram followers by 15% in 60 days",
+   "Achieve 20% higher engagement by Q4",
+   "Get 50 LinkedIn sign-ups this month",
+   "Increase TikTok sales by 10%"]
+},
+{
+  q: "4. What does success look like for your social media campaigns?",
+  options: [
+    "Increased brand recognition (more people aware of the brand)",
+    "Higher engagement (more active interactions from followers)",
+    "Lead conversions (filling out forms, downloading resources)",
+    "Sales growth (direct sales or sign-ups via social media)"
+  ]
+},
+{
+  q: "5. Are your goals realistic and achievable based on current resources and data?",
+  options: [
+    "Yes, based on past campaign results (we’ve seen X% growth with similar efforts)",
+    "Moderate increase in followers (considering current growth rate)",
+    "Achievable with additional ad spend or influencer partnerships",
+    "Goals align with the team’s ability to produce content regularly"
+  ]
+},
+{
+  q: "6. Who is your target audience, and how do you segment them (age, gender, interests, etc.)?",
+  options: [
+    "Age: 18-34 (millennials and Gen Z)",
+    "Gender: Predominantly female (60%)",
+    "Interests: Fitness, beauty, fashion, tech",
+    "Location: Urban areas (US, UK, Canada)",
+    "Occupation: Professionals, students, stay-at-home parents"
+  ]
+},
+{
+  q: "7. What are the main pain points or needs of your audience that your brand can address?",
+  options: [
+    "Affordable products (fitness gear, fashion, etc.)",
+    "Time-saving solutions (easy-to-use tech, meal prep ideas)",
+    "Personalized advice (fitness plans, skincare routines)",
+    "Social proof (reviews, customer testimonials)"
+  ]
+},
+{
+  q: "8. How will you use data to create detailed buyer personas for your ideal customers?",
+  options: [
+    "Survey results from current followers",
+    "Website analytics (demographics from Google Analytics)",
+    "Social media insights (Facebook and Instagram Insights)",
+    "Customer reviews to identify common characteristics and needs"
+  ]
+},
+{
+  q: "9. What platforms and content types resonate most with your audience?",
+  options: [
+    "Instagram and TikTok (visual, short-form video content)",
+    "Pinterest (for fashion and lifestyle inspiration)",
+    "Facebook (community-building, longer posts)",
+    "LinkedIn (B2B engagement, thought leadership)"
+  ]
+},
+{
+  q: "10. How can you gather insights directly from your followers (surveys, polls, etc.)?",
+  options: [
+    "Instagram polls (quick, easy feedback)",
+    "Surveys via email or social media (Google Forms)",
+    "Engaging in DMs or comments (ask questions directly)",
+    "Live Q&A sessions on Instagram or Facebook"
+  ]
+},
+{
+  q: "11. Which tools will you use to analyze audience demographics and behavior?",
+  options: [
+    "Instagram Insights (age, gender, location data)",
+    "Google Analytics (website traffic and demographics)",
+    "Facebook Audience Insights (in-depth data for campaigns)",
+    "Twitter Analytics (engagement and follower data)"
+  ]
+},
+{
+  q: "12. Which platforms are most popular with your target audience?",
+  options: [
+    "Instagram (for fashion, beauty, lifestyle)",
+    "TikTok (for quick trends and viral content)",
+    "Facebook (for community engagement)",
+    "LinkedIn (for B2B and professional networking)"
+  ]
+},
+{
+  q: "13. Does your content fit the format and features of the selected platforms?",
+  options: [
+    "Instagram: Visual, photo-centric content, Stories, Reels",
+    "TikTok: Short, snappy video content, challenges, trends",
+    "LinkedIn: Articles, professional insights, case studies",
+    "Facebook: Long-form posts, community engagement, events"
+  ]
+},
+{
+  q: "14. How do the platform's strengths align with your marketing goals?",
+  options: [
+    "Instagram: Visual-driven brand awareness and engagement",
+    "TikTok: Viral content and expanding brand reach",
+    "LinkedIn: Thought leadership and B2B networking",
+    "Facebook: Community-building and customer service"
+  ]
+},
+{
+  q: "15. How do your competitors use social media, and what can you learn from them?",
+  options: [
+    "Top-performing content types (e.g., video, giveaways)",
+    "Influencer partnerships used",
+    "Paid ad targeting and messaging",
+    "Trending/niche hashtags"
+  ]
+},
+{
+  q: "16. Are you considering niche platforms or emerging trends?",
+  options: [
+    "TikTok: To reach younger, trend-savvy audiences",
+    "Pinterest: For visual content like product guides",
+    "Snapchat: For short, fun, behind-the-scenes content",
+    "YouTube Shorts: To complement long-form YouTube content"
+  ]
+},
+{
+  q: "17. What are the main content pillars that will guide your content creation?",
+  options: [
+    "Education: How-to videos, tutorials, product tips",
+    "Inspiration: Lifestyle, success stories, customer features",
+    "Entertainment: Behind-the-scenes, memes, challenges",
+    "Product-focused: Features, promotions, new releases"
+  ]
+},
+{
+  q: "18. How do you decide which content formats to prioritize?",
+  options: [
+    "Video content (Reels, TikTok)",
+    "Images (product/lifestyle shots)",
+    "Polls (interactive feedback)",
+    "Infographics (educational value)"
+  ]
+},
+{
+  q: "19. What’s your content posting schedule?",
+  options: [
+    "Instagram: 4–5 times/week + daily Stories",
+    "Facebook: 3–4 engaging posts/week",
+    "TikTok: 3–4 short videos/week",
+    "LinkedIn: 2–3 thought leadership posts/week"
+  ]
+  },
+ {
+  q:"20. What key dates should be included in your content calendar?",
+  options: [
+    "Major Holidays (e.g., Christmas, Black Friday)",
+    "Brand/Product Launches",
+    "Industry Events",
+    "Seasonal Campaigns (e.g., Back-to-school, Summer Sales)"
+  ]
+},
+{
+  q:"21. How will you use calls-to-action (CTAs) and hashtags to increase engagement?",
+  options: [
+    "CTAs: 'Click the link in bio,' 'Tag a friend,' etc.",
+    "Hashtags: Use trending and branded hashtags",
+    "Polls: 'Which color do you prefer?' 'Vote now!'",
+    "User-generated content: 'Share your style and tag us!'"
+  ]
+},
+{
+  q: "22. Which tools will you use to create and schedule your content?",
+  options: [
+    "Canva: Graphic design and templates",
+    "Buffer: Scheduling and analytics",
+    "Later: Visual content scheduling for Instagram/TikTok",
+    "Trello: Organizing content calendars"
+  ]
+},
+{
+  q: "23. Which influencers align with your brand’s image and audience?",
+  options: [
+    "Fitness influencers",
+    "Fashion bloggers",
+    "Tech experts",
+    "Moms/Parenting bloggers"
+  ]
+},
+{
+  q: "24. How do you assess an influencer’s reach, engagement, and authenticity?",
+  options: [
+    "Reach: Followers count and platform",
+    "Engagement: Likes, comments, shares",
+    "Authenticity: Content style and values",
+    "Past brand partnerships"
+  ]
+},
+{
+  q: "25. What types of partnerships can help amplify your reach?",
+  options: [
+    "Co-branded campaigns",
+    "Influencer collaborations",
+    "Charity-based promotions",
+    "Event partnerships"
+  ]
+},
+{
+  q: "26. How can you build long-term influencer/brand relationships?",
+  options: [
+    "Consistent communication",
+    "Exclusive offers or early access",
+    "Co-hosted events or webinars",
+    "Performance-based incentives"
+  ]
+},
+{
+  q: "27. What platforms will you leverage for influencer partnerships?",
+  options: [
+    "Instagram: Reels, Stories, Posts",
+    "TikTok: Challenges, branded tags",
+    "YouTube: Reviews, tutorials",
+    "Facebook: Long-form and community posts"
+  ]
+},
+{
+  q: "28. What's your total campaign budget and how will you divide it?",
+  options: [
+    "Instagram Ads: 40%",
+    "Facebook Ads: 30%",
+    "TikTok: 20%",
+    "LinkedIn: 10%"
+  ]
+},
+{
+  q: "29. How will you calculate ad spend efficiency (CPC, CPM)?",
+  options: [
+    "CPC: Cost-per-click for lead generation",
+    "CPM: Impressions-based for awareness",
+    "CTR: Assess click-through rates",
+    "Small tests to identify best strategy"
+  ]
+},
+{
+  q: "30. What KPIs will you use to track paid campaign performance?",
+  options: [
+    "CPA (Cost Per Acquisition)",
+    "ROAS (Return on Ad Spend)",
+    "CTR (Click Through Rate)",
+    "Conversion Rate"
+  ]
+},
+{
+  q: "31. Are you allocating paid budget to influencer campaigns?",
+  options: [
+    "Yes — 20% for sponsored posts or challenges",
+    "Focus on micro-influencers (1k–50k)",
+    "Influencer giveaways to increase reach",
+    "N/A — not part of strategy"
+  ]
+},
+{
+  q: "32. How will you monitor and adjust ad budgets in real time?",
+  options: [
+    "Facebook Ads Manager dashboard",
+    "Track KPIs daily",
+    "Pause underperforming ads quickly",
+    "Reallocate budget to top performers"
+  ]
+},
+{
+  q: "33. What scheduling/automation tools will you use?",
+  options: [
+    "Buffer",
+    "Later",
+    "Hootsuite",
+    "Sprout Social"
+  ]
+},
+{
+  q: "34. How will you engage with followers in real-time?",
+  options: [
+    "Daily check-ins and DMs",
+    "Social tools to track messages",
+    "Automated FAQ responses",
+    "Comment actively on user posts"
+  ]
+},
+{
+  q: "35. How will you handle paid ad creation and targeting?",
+  options: [
+    "Audience segmentation via Ads Manager",
+    "High-quality creatives (photos/videos)",
+    "Clear messaging and CTAs",
+    "A/B testing of ad variants"
+  ]
+},
+{
+  q: "36. How will you ensure consistent execution across platforms?",
+  options: [
+    "Use a content calendar",
+    "Workflow process for approvals",
+    "Cross-team alignment meetings",
+    "Weekly syncs for blockers"
+  ]
+},
+{
+  q: "37. What KPIs will you track for your social strategy?",
+  options: [
+    "Engagement Rate",
+    "Follower Growth",
+    "Website Traffic",
+    "Lead Generation"
+  ]
+},
+{
+  q: "38. How often will you review and adjust strategy?",
+  options: [
+    "Weekly (light performance checks)",
+    "Monthly (in-depth analysis)",
+    "Quarterly (strategic overhaul)",
+    "After major campaigns"
+  ]
+},
+{
+  q: "39. Which analytics tools will you use?",
+  options: [
+    "Google Analytics",
+    "Facebook Insights",
+    "Instagram Insights",
+    "Hootsuite Analytics"
+  ]
+},
+{
+  q: "40. How will you run A/B tests to optimize content and ads?",
+  options: [
+    "Test headlines (copy variations)",
+    "Compare visuals (image vs. video)",
+    "Experiment with post timing",
+    "Try different CTAs"
+  ]
+},
+{
+  q: "41. What steps will you take to refine your strategy based on insights?",
+  options: [
+    "Adapt based on engagement trends",
+    "Reallocate budget to top channels",
+    "Update audience personas",
+    "Test new tactics (influencer/paid)"
+  ]
+}
+      // More questions will go here (truncated for brevity)
+    ];
+
+  let current = 0;
+  const answers = [];
+
+  const questionBox = document.getElementById('questionBox');
+  const form = document.getElementById('intakeForm');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+
+  function updateProgress() {
+    const percentage = Math.round((current / questions.length) * 100);
+    progressFill.style.width = `${percentage}%`;
+    progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
+  }
+
+  function showQuestion(index) {
+  const currentQ = questions[index];
+  const selectedAnswer = answers[index]?.answer || "";
+
+  const optionsHtml = currentQ.options.map(option =>
+    `<button type="button" class="option-btn ${selectedAnswer === option ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`
+  ).join('');
+
+  questionBox.innerHTML = `
+    <label class="question">${currentQ.q}</label>
+    <div class="options-container">${optionsHtml}</div>
+    <div class="nav-buttons" style="margin-top: 20px; justify-content: center;">
+      ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
+    </div>
+  `;
+
+  updateProgress();
+}
+
+
+  function selectOption(answer) {
+    answers[current] = {
+      question: questions[current].q,
+      answer: answer
+    };
+
+    current++;
+    if (current < questions.length) {
+      showQuestion(current);
+    } else {
+      buildSubmission();
+    }
+  }
+
+  function goBack() {
+    if (current > 0) {
+      current--;
+      showQuestion(current);
+    }
+  }
+
+  function buildSubmission() {
+    let message = "";
+    answers.forEach((item, index) => {
+      message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
+    });
+
+    questionBox.innerHTML = `
+  <label class="question">You're almost done! Please provide your email so we can follow up:</label>
+  <div class="form-end">
+    <input type="hidden" name="message" value="${message.replace(/"/g, '&quot;')}" />
+    <input type="email" name="email" placeholder="Your Email (for follow-up)" required />
+    <button type="submit">Submit</button>
+  </div>
+  <div class="nav-buttons">
+    <button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>
+  </div>
+`;
+
+    form.setAttribute("action", "https://formspree.io/f/mzzgvdvy");
+    form.setAttribute("method", "POST");
+
+    // Rebind the submit listener after replacing innerHTML
+    form.addEventListener("submit", function handleSubmit(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      }).then((response) => {
+        if (response.ok) {
+          window.location.href = "thankyou.html";
+        } else {
+          alert("Oops! Something went wrong.");
+        }
+      });
+
+      // Cleanup to prevent duplicate submissions
+      form.removeEventListener("submit", handleSubmit);
+    });
+  }
+
+  // Kick it off
+  showQuestion(current);
+</script>
+
+
+
+</body>
+</html>
