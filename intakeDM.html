@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Digital Marketing Intake | Lenny and Layers</title>
   <link rel="icon" href="images/favicon.png" type="image/png" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -80,10 +79,8 @@
       padding: 12px 20px;
       border: none;
       border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      letter-spacing: 1px;
       width: 100%;
       max-width: 500px;
       text-align: center;
@@ -92,7 +89,6 @@
 
     .option-btn:hover {
       background-color: #c4c4c4;
-      text-decoration: underline;
     }
 
     .option-btn.selected {
@@ -108,23 +104,10 @@
       margin-top: 20px;
       flex-wrap: wrap;
       gap: 10px;
-      text-align: center;
     }
 
     button {
-      background: #dcbd66;
-      color: #0d1b2a;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
       font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      cursor: pointer;
-      min-width: 120px;
-    }
-
-    button:hover {
-      background: #c4c4c4;
     }
 
     input[type="email"] {
@@ -136,7 +119,7 @@
       background: #1c2a3a;
       color: #fff;
       font-size: 1rem;
-      margin: 16px auto;
+      margin: 20px auto;
       display: block;
     }
 
@@ -159,7 +142,6 @@
   </div>
 
   <script>
-
  const questions = [
   {
     q: "What are the primary business objectives that should align with your social media strategy?",
@@ -327,136 +309,133 @@
   }
 ];
 
-    document.addEventListener("DOMContentLoaded", () => {
-      let current = 0;
-      const answers = [];
-      const form = document.getElementById("intakeForm");
-      const questionBox = document.getElementById("questionBox");
-      const progressFill = document.getElementById("progressFill");
-      const progressText = document.getElementById("progressText");
 
-      function updateProgress() {
-        const percentage = Math.round((current / questions.length) * 100);
-        progressFill.style.width = `${percentage}%`;
-        progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
-      }
+    let current = 0;
+    const answers = [];
+    const questionBox = document.getElementById("questionBox");
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    const form = document.getElementById("intakeForm");
 
-      function showQuestion(index) {
-        const q = questions[index];
-        const selectedAnswer = answers[index]?.answer || "";
+    function updateProgress() {
+      const percentage = Math.round((current / questions.length) * 100);
+      progressFill.style.width = `${percentage}%`;
+      progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
+    }
 
-        const optionsHtml = q.options.map(option => {
-          const isSelected = selectedAnswer === option;
-          return `<button type="button" class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption(${JSON.stringify(option)})">${option}</button>`;
-        }).join("");
+    function showQuestion(index) {
+      const currentQ = questions[index];
+      const selectedAnswer = answers[index]?.answer || "";
 
-        questionBox.innerHTML = `
-          <label class="question">${q.q}</label>
-          <div class="options-container">${optionsHtml}</div>
-          <div class="nav-buttons">
-            ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
-          </div>
-        `;
+      const optionsHtml = currentQ.options.map(option => {
+        const isSelected = selectedAnswer === option;
+        return `<button type="button" class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`;
+      }).join("");
 
-        updateProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      questionBox.innerHTML = `
+        <label class="question">${currentQ.q}</label>
+        <div class="options-container">${optionsHtml}</div>
+        <div class="nav-buttons">
+          ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
+        </div>
+      `;
 
-      window.selectOption = function(answer) {
-        answers[current] = {
-          question: questions[current].q,
-          answer: answer
-        };
-        current++;
-        if (current < questions.length) {
-          showQuestion(current);
-        } else {
-          buildSubmission();
-        }
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectOption(answer) {
+      answers[current] = {
+        question: questions[current].q,
+        answer: answer
       };
-
-      window.goBack = function() {
-        if (current > 0) {
-          current--;
-          showQuestion(current);
-        }
-      };
-
-      function buildSubmission() {
-        let message = "";
-        answers.forEach((item, index) => {
-          message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
-        });
-
-        questionBox.innerHTML = "";
-
-        const label = document.createElement("label");
-        label.className = "question";
-        label.textContent = "You're almost done! Please provide your email so we can follow up:";
-        questionBox.appendChild(label);
-
-        const hiddenInput = document.createElement("input");
-        hiddenInput.type = "hidden";
-        hiddenInput.name = "message";
-        hiddenInput.value = message;
-        questionBox.appendChild(hiddenInput);
-
-        const emailInput = document.createElement("input");
-        emailInput.type = "email";
-        emailInput.name = "email";
-        emailInput.placeholder = "Your Email (for follow-up)";
-        emailInput.required = true;
-        emailInput.autofocus = true;
-        questionBox.appendChild(emailInput);
-
-        const navDiv = document.createElement("div");
-        navDiv.className = "nav-buttons";
-
-        const backBtn = document.createElement("button");
-        backBtn.type = "button";
-        backBtn.textContent = "Previous";
-        backBtn.className = "option-btn";
-        backBtn.style.background = "#2a3d56";
-        backBtn.style.color = "#fff";
-        backBtn.onclick = goBack;
-        navDiv.appendChild(backBtn);
-
-        const submitBtn = document.createElement("button");
-        submitBtn.type = "submit";
-        submitBtn.className = "option-btn";
-        submitBtn.textContent = "Submit";
-        navDiv.appendChild(submitBtn);
-
-        questionBox.appendChild(navDiv);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      current++;
+      if (current < questions.length) {
+        showQuestion(current);
+      } else {
+        buildSubmission();
       }
+    }
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const data = new FormData(form);
+    function goBack() {
+      if (current > 0) {
+        current--;
+        showQuestion(current);
+      }
+    }
 
-        fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => {
-          if (response.ok) {
-            window.location.href = "thankyou.html";
-          } else {
-            alert("Something went wrong. Please try again.");
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          alert("Submission failed. Please try again later.");
-        });
+    function buildSubmission() {
+      let message = "";
+      answers.forEach((item, index) => {
+        message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
       });
 
-      showQuestion(current);
+      questionBox.innerHTML = "";
+
+      const label = document.createElement("label");
+      label.className = "question";
+      label.textContent = "You're almost done! Please provide your email so we can follow up:";
+      questionBox.appendChild(label);
+
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "message";
+      hiddenInput.value = message;
+      questionBox.appendChild(hiddenInput);
+
+      const emailInput = document.createElement("input");
+      emailInput.type = "email";
+      emailInput.name = "email";
+      emailInput.placeholder = "Your Email (for follow-up)";
+      emailInput.required = true;
+      emailInput.autofocus = true;
+      questionBox.appendChild(emailInput);
+
+      const submitBtn = document.createElement("button");
+      submitBtn.type = "submit";
+      submitBtn.className = "option-btn";
+      submitBtn.textContent = "Submit";
+
+      const backBtn = document.createElement("button");
+      backBtn.type = "button";
+      backBtn.textContent = "Previous";
+      backBtn.className = "option-btn";
+      backBtn.style.background = "#2a3d56";
+      backBtn.style.color = "#fff";
+      backBtn.onclick = goBack;
+
+      const navDiv = document.createElement("div");
+      navDiv.className = "nav-buttons";
+      navDiv.appendChild(backBtn);
+      navDiv.appendChild(submitBtn);
+      questionBox.appendChild(navDiv);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "thankyou.html";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Submission failed. Please try again later.");
+      });
     });
+
+    showQuestion(current);
   </script>
 </body>
 </html>
