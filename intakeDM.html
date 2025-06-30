@@ -589,53 +589,57 @@
     }
 
     function buildSubmission() {
-      let message = "";
-      answers.forEach((item, index) => {
-        message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
-      });
+  let message = "";
+  answers.forEach((item, index) => {
+    message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
+  });
 
-      questionBox.innerHTML = "";
+  questionBox.innerHTML = "";
 
-      const label = document.createElement("label");
-      label.className = "question";
-      label.textContent = "You're almost done! Please provide your email so we can follow up:";
-      questionBox.appendChild(label);
+  const label = document.createElement("label");
+  label.className = "question";
+  label.textContent = "You're almost done! Please provide your email so we can follow up:";
+  questionBox.appendChild(label);
 
-      const hiddenInput = document.createElement("input");
-      hiddenInput.type = "hidden";
-      hiddenInput.name = "message";
-      hiddenInput.value = message;
-      questionBox.appendChild(hiddenInput);
+  const hiddenInput = document.createElement("input");
+  hiddenInput.type = "hidden";
+  hiddenInput.name = "message";
+  hiddenInput.value = message;
+  questionBox.appendChild(hiddenInput);
 
-      const emailInput = document.createElement("input");
-      emailInput.type = "email";
-      emailInput.name = "email";
-      emailInput.placeholder = "Your Email (for follow-up)";
-      emailInput.required = true;
-      emailInput.autofocus = true;
-      questionBox.appendChild(emailInput);
+  const emailInput = document.createElement("input");
+  emailInput.type = "email";
+  emailInput.name = "email";
+  emailInput.placeholder = "Your Email (for follow-up)";
+  emailInput.required = true;
+  emailInput.autofocus = true;
+  questionBox.appendChild(emailInput);
 
-      const submitBtn = document.createElement("button");
-      submitBtn.type = "submit";
-      submitBtn.className = "option-btn";
-      submitBtn.textContent = "Submit";
-      questionBox.appendChild(submitBtn);
+  // Create Submit button
+  const submitBtn = document.createElement("button");
+  submitBtn.type = "submit";
+  submitBtn.className = "option-btn";
+  submitBtn.textContent = "Submit";
 
-      const backBtn = document.createElement("button");
-      backBtn.type = "button";
-      backBtn.textContent = "Previous";
-      backBtn.className = "option-btn";
-      backBtn.style.background = "#2a3d56";
-      backBtn.style.color = "#fff";
-      backBtn.onclick = goBack;
+  // Create Back button
+  const backBtn = document.createElement("button");
+  backBtn.type = "button";
+  backBtn.textContent = "Previous";
+  backBtn.className = "option-btn";
+  backBtn.style.background = "#2a3d56";
+  backBtn.style.color = "#fff";
+  backBtn.onclick = goBack;
 
-      const navDiv = document.createElement("div");
-      navDiv.className = "nav-buttons";
-      navDiv.appendChild(backBtn);
-      questionBox.appendChild(navDiv);
+  // Wrap both in nav-buttons
+  const navDiv = document.createElement("div");
+  navDiv.className = "nav-buttons";
+  navDiv.appendChild(backBtn);
+  navDiv.appendChild(submitBtn);
+  questionBox.appendChild(navDiv);
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
