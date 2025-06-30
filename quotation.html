@@ -4,16 +4,192 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request Quotation</title>
-  <link href="stylesheet.css" rel="stylesheet" />
+
+  <!-- Embedded CSS -->
+  <style>
+    body {
+      background-color: #0d1b2a;
+      color: #f4f1ea;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      padding: 20px 40px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo img {
+      height: 40px;
+    }
+
+    .nav-logo span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-icon {
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+      color: #dcbd66;
+    }
+
+    .dropdown-list {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #102338;
+      list-style: none;
+      padding: 10px 0;
+      margin: 0;
+      border: 2px solid #dcbd66;
+      border-radius: 8px;
+      z-index: 1002;
+    }
+
+    .dropdown-list li a {
+      display: block;
+      padding: 10px 16px;
+      color: #dcbd66;
+      text-decoration: none;
+    }
+
+    .dropdown-list li a:hover {
+      background-color: #dcbd66;
+      color: #0d1b2a;
+    }
+
+    #toggle-menu:checked + label + .dropdown-list {
+      display: block;
+    }
+
+    section {
+      padding: 60px 24px;
+    }
+
+    h2, h3 {
+      color: #dcbd66;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 12px;
+    }
+
+    .contact-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-intro p {
+      margin-bottom: 24px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+      padding: 12px;
+      border-radius: 6px;
+      border: 2px solid #dcbd66;
+      background-color: #1c2a3a;
+      color: #f4f1ea;
+      font-family: inherit;
+    }
+
+    form textarea {
+      resize: vertical;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #ccc;
+    }
+
+    form button {
+      background-color: #dcbd66;
+      color: #0d1b2a;
+      font-weight: bold;
+      padding: 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', cursive;
+      text-transform: uppercase;
+    }
+
+    form button:hover {
+      background-color: #c5a953;
+    }
+
+    form h3 {
+      margin-top: 24px;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+      color: #dcbd66;
+    }
+
+    form label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 2px 0;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      color: #f4f1ea;
+      cursor: pointer;
+    }
+
+    form input[type="checkbox"] {
+      accent-color: #dcbd66;
+      margin: 0;
+      padding: 0;
+      transform: scale(1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: #ccc;
+    }
+    .quote-section {
+  background-image: url('images/hero_background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+  </style>
+
 </head>
 <body>
 
-<!-- Navigation (reuse if needed) -->
-<nav style="padding: 20px 40px;">
-  <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between;">
-    <div class="nav-logo" style="display: flex; align-items: center; gap: 10px;">
-      <img src="images/primary_logo.jpg" alt="Lenny & Layers Logo" style="height: 40px;">
-      <span style="font-size: 20px; font-weight: bold;">Quotation</span>
+<!-- Navigation -->
+<nav>
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src="images/primary_logo.jpg" alt="Lenny & Layers Logo">
+      <span>Quotation</span>
     </div>
     <div class="nav-dropdown">
       <input type="checkbox" id="toggle-menu" hidden />
@@ -29,30 +205,36 @@
 </nav>
 
 <!-- Quotation Form -->
-<section class="hero-section contact-section">
-  <div class="content-overlay contact-wrapper">
+<section class="quote-section">
+  <div class="contact-wrapper">
     <div class="contact-intro">
       <h2 id="quote-title">Request Quotation</h2>
       <p>Fill out this quick form and we’ll get back to you with a tailored quotation for your selected package.</p>
     </div>
 
-    <form id="quote-form" action="https://formspree.io/f/mzzgvdvy" method="POST" class="contact-form">
+    <form id="quote-form" action="https://formspree.io/f/mzzgvdvy" method="POST">
       <input type="hidden" name="selected_package" id="selected-package">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="4" placeholder="Anything specific you'd like included?" required></textarea>
+      <textarea name="message" rows="3" placeholder="Brief description of what your looking for?" required></textarea>
+
+      <h3>Would you be interested in any of the following?</h3>
+      <label><input type="checkbox" name="addons" value="Brand/ Website/ Marketing Add-Ons"> Add-Ons that werent included in this package</label>    
+      <label><input type="checkbox" name="addons" value="Retainer Package"> Retainer package for timely support & maintanence</label>
+      <label><input type="checkbox" name="addons" value="Training & Support"> Training & Support</label>
+
       <button type="submit">Request Quote</button>
     </form>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="text-center">
+<footer>
   <p>Based in Kenya. Designing for Africa and beyond.</p>
   <p>©Copyright 2025 Lenny and Layers. ALL rights reserved.</p>
 </footer>
 
-<!-- Script to inject package -->
+<!-- Inject Selected Package -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
