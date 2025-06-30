@@ -6,6 +6,7 @@
   <title>Digital Marketing Intake | Lenny and Layers</title>
   <link rel="icon" href="images/favicon.png" type="image/png" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -17,6 +18,7 @@
       align-items: center;
       min-height: 100vh;
     }
+
     .question-container {
       max-width: 800px;
       width: 90%;
@@ -25,6 +27,7 @@
       border-radius: 12px;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     }
+
     h1 {
       font-family: 'Playfair Display', serif;
       color: #dcbd66;
@@ -32,42 +35,73 @@
       margin-bottom: 30px;
       text-align: center;
     }
+
     .question {
       font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 16px;
       font-family: 'Playfair Display', serif;
     }
-    label.option {
-      display: block;
-      background: #1c2a3a;
-      border: 1px solid #dcbd66;
-      padding: 12px;
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background-color: #2a3d56;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 0 auto 10px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: #dcbd66;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    #progressText {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+      color: #dcbd66;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    .option-btn {
+      background: #dcbd66;
+      color: #0d1b2a;
+      padding: 12px 20px;
+      border: none;
       border-radius: 8px;
-      margin: 8px 0;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      letter-spacing: 1px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      transition: background-color 0.3s ease;
     }
-    label.option:hover {
-      background: #2d3f56;
+
+    .option-btn:hover {
+      background-color: #c4c4c4;
+      text-decoration: black underline;
     }
-   
-    input[type="email"] {
-  width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #dcbd66;
-  background: #1c2a3a;
-  color: #fff;
-  font-size: 1rem;
-  resize: none; 
-  max-width: 90%;  
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
+
+    .option-btn.selected {
+      background-color: #c4c4c4;
+      color: #0d1b2a;
+      font-weight: bold;
+      border: 2px solid #dcbd66;
+    }
+
     .nav-buttons {
       display: flex;
       justify-content: center;
@@ -75,6 +109,7 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+
     button {
       background: #dcbd66;
       align-self: center;
@@ -87,30 +122,23 @@
       cursor: pointer;
       min-width: 120px;
     }
+
     button:hover {
       background: #c4c4c4;
     }
-    .progress-bar {
-  width: 100%;
-  height: 8px;
-  background-color: #2a3d56;
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 0 auto 10px;
-}
 
-.progress-fill {
-  height: 100%;
-  background-color: #dcbd66;
-  width: 0%;
-  transition: width 0.3s ease;
-}
-#progressText {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 0.95rem;
-  color: #dcbd66;
-}
+    input[type="email"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #dcbd66;
+      background: #1c2a3a;
+      color: #fff;
+      font-size: 1rem;
+      margin: 16px auto;
+      display: block;
+    }
 
     @media (max-width: 600px) {
       .nav-buttons {
@@ -118,92 +146,22 @@
         gap: 12px;
       }
     }
-    .options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 20px;
-  align-items: center;
-}
-
-.option-btn {
-  background: #dcbd66;
-  color: #0d1b2a;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.2rem;
-  cursor: pointer;
-  letter-spacing: 1px;
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.option-btn:hover {
-  background-color: #c4c4c4;
-  text-decoration: black underline;
-}
-.options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 20px;
-  align-items: center;
-}
-.form-end {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.form-end input[type="email"] {
-  width: 100%;
-  max-width: 400px;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #dcbd66;
-  background: #1c2a3a;
-  color: #fff;
-  font-size: 1rem;
-}
-
-.form-end button[type="submit"] {
-  max-width: 200px;
-  width: 100%;
-}
-.option-btn.selected {
-  background-color: #c4c4c4;
-  color: #0d1b2a;
-  font-weight: bold;
-  border: 2px solid #dcbd66;
-}
-
-
-</style>
+  </style>
 </head>
 
 <body>
   <div class="question-container">
     <h1>Digital Marketing Questionnaire</h1>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <form id="quizForm">
     <p id="progressText"></p>
+    <form id="intakeForm" action="https://formspree.io/f/mzzgvdvy" method="POST">
       <div id="questionBox"></div>
     </form>
-  
+  </div>
 
-  <form id="intakeForm">
-  <div id="questionBox"></div>
-</form>
-</div>
+  <script>
 
- <script>
-      const questions = [
+          const questions = [
 {
   q: "1.What are the primary business objectives that should align with your social media strategy?",
   options: [
@@ -574,103 +532,135 @@
       // More questions will go here (truncated for brevity)
     ];
 
-  let current = 0;
-  const answers = [];
-  const questionBox = document.getElementById("questionBox");
-  const progressFill = document.getElementById("progressFill");
-  const progressText = document.getElementById("progressText");
-  const form = document.getElementById("intakeForm");
+    let current = 0;
+    const answers = [];
+    const questionBox = document.getElementById("questionBox");
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    const form = document.getElementById("intakeForm");
 
-  function updateProgress() {
-    const percentage = Math.round((current / questions.length) * 100);
-    progressFill.style.width = `${percentage}%`;
-    progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
-  }
-
-  function showQuestion(index) {
-    const currentQ = questions[index];
-    const selectedAnswer = answers[index]?.answer || "";
-
-    const optionsHtml = currentQ.options
-      .map(option => {
-        const isSelected = selectedAnswer === option;
-        return `<button type="button" class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`;
-      })
-      .join("");
-
-    questionBox.innerHTML = `
-      <label class="question">${currentQ.q}</label>
-      <div class="options-container">${optionsHtml}</div>
-      <div class="nav-buttons" style="margin-top: 20px; justify-content: center;">
-        ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
-      </div>
-    `;
-
-    updateProgress();
-  }
-
-  function selectOption(answer) {
-    answers[current] = {
-      question: questions[current].q,
-      answer: answer
-    };
-    current++;
-    if (current < questions.length) {
-      showQuestion(current);
-    } else {
-      buildSubmission();
+    function updateProgress() {
+      const percentage = Math.round((current / questions.length) * 100);
+      progressFill.style.width = `${percentage}%`;
+      progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
     }
-  }
 
-  function goBack() {
-    if (current > 0) {
-      current--;
-      showQuestion(current);
+    function showQuestion(index) {
+      const currentQ = questions[index];
+      const selectedAnswer = answers[index]?.answer || "";
+
+      const optionsHtml = currentQ.options
+        .map(option => {
+          const isSelected = selectedAnswer === option;
+          return `<button type="button" class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`;
+        })
+        .join("");
+
+      questionBox.innerHTML = `
+        <label class="question">${currentQ.q}</label>
+        <div class="options-container">${optionsHtml}</div>
+        <div class="nav-buttons">
+          ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
+        </div>
+      `;
+
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }
 
-  function buildSubmission() {
-    let message = "";
-    answers.forEach((item, index) => {
-      message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
-    });
+    function selectOption(answer) {
+      answers[current] = {
+        question: questions[current].q,
+        answer: answer
+      };
+      current++;
+      if (current < questions.length) {
+        showQuestion(current);
+      } else {
+        buildSubmission();
+      }
+    }
 
-    questionBox.innerHTML = `
-      <label class="question">You're almost done! Please provide your email so we can follow up:</label>
-      <input type="hidden" name="message" value="${message.replace(/"/g, '&quot;')}" />
-      <input type="email" name="email" placeholder="Your Email (for follow-up)" required style="width: 100%; padding: 14px; margin: 16px 0; border-radius: 8px; border: 1px solid #dcbd66; background: #1c2a3a; color: #fff;" />
-      <button type="submit" class="option-btn" style="display: block; margin: 0 auto;">Submit</button>
-      <div class="nav-buttons" style="margin-top: 20px; justify-content: center;">
-        <button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>
-      </div>
-    `;
+    function goBack() {
+      if (current > 0) {
+        current--;
+        showQuestion(current);
+      }
+    }
 
-    form.setAttribute("action", "https://formspree.io/f/mzzgvdvy");
-    form.setAttribute("method", "POST");
-
-    // ✅ Re-attach submit event handler after innerHTML update
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json"
-        }
-      }).then(response => {
-        if (response.ok) {
-          window.location.href = "thankyou.html";
-        } else {
-          alert("Oops! Something went wrong.");
-        }
+    function buildSubmission() {
+      let message = "";
+      answers.forEach((item, index) => {
+        message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
       });
-    });
-  }
 
-  // Initialize
-  showQuestion(current);
-</script>
+      questionBox.innerHTML = "";
 
+      const label = document.createElement("label");
+      label.className = "question";
+      label.textContent = "You're almost done! Please provide your email so we can follow up:";
+      questionBox.appendChild(label);
+
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "message";
+      hiddenInput.value = message;
+      questionBox.appendChild(hiddenInput);
+
+      const emailInput = document.createElement("input");
+      emailInput.type = "email";
+      emailInput.name = "email";
+      emailInput.placeholder = "Your Email (for follow-up)";
+      emailInput.required = true;
+      emailInput.autofocus = true;
+      questionBox.appendChild(emailInput);
+
+      const submitBtn = document.createElement("button");
+      submitBtn.type = "submit";
+      submitBtn.className = "option-btn";
+      submitBtn.textContent = "Submit";
+      questionBox.appendChild(submitBtn);
+
+      const backBtn = document.createElement("button");
+      backBtn.type = "button";
+      backBtn.textContent = "Previous";
+      backBtn.className = "option-btn";
+      backBtn.style.background = "#2a3d56";
+      backBtn.style.color = "#fff";
+      backBtn.onclick = goBack;
+
+      const navDiv = document.createElement("div");
+      navDiv.className = "nav-buttons";
+      navDiv.appendChild(backBtn);
+      questionBox.appendChild(navDiv);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = "thankyou.html";
+          } else {
+            alert("Something went wrong. Please try again.");
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert("Submission failed. Please try again later.");
+        });
+      });
+    
+  </script>
 </body>
 </html>
