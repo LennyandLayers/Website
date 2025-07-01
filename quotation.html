@@ -185,24 +185,38 @@
 <body>
 
 <!-- Navigation -->
-<nav>
-  <div class="nav-container">
-    <div class="nav-logo">
-      <img src="images/primary_logo.jpg" alt="Lenny & Layers Logo">
-      <span>Quotation</span>
+<nav style="padding: 20px 40px; font-family: 'Times New Roman', serif;">
+  <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    
+    <!-- Logo -->
+    <div class="nav-logo" style="display: flex; align-items: center; gap: 10px;">
+      <img src="images/primary_logo.jpg" alt="Lenny & Layers Logo" style="height: 40px;">
+      <span style="font-size: 20px; font-weight: bold;"> Home </span>
     </div>
+
+    <!-- Dropdown Only Navigation -->
     <div class="nav-dropdown">
       <input type="checkbox" id="toggle-menu" hidden />
-      <label for="toggle-menu" class="nav-dropdown-icon">☰</label>
+      
+      <!-- Icon and Label -->
+      <label for="toggle-menu" class="nav-dropdown-icon" style="display: flex; flex-direction: column; align-items: center; color: #dcbd66;">
+        ☰
+        <span style="font-size: 12px; margin-top: 4px;">Menu</span>
+      </label>
+
+      <!-- Dropdown List -->
       <ul class="dropdown-list">
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="contact_us.html">Contact</a></li>
         <li><a href="service.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
       </ul>
     </div>
+
   </div>
 </nav>
+
 
 <!-- Quotation Form -->
 <section class="quote-section">
