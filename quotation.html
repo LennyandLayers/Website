@@ -96,8 +96,9 @@
       margin: 0 auto;
     }
 
-    .contact-intro p {
-      margin-bottom: 24px;
+    .contact-intro p,h2 {
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     form {
@@ -180,23 +181,47 @@
   background-repeat: no-repeat;
 }
 .form-field {
+  width: 95%;
   padding: 12px;
   border-radius: 6px;
   border: 2px solid #dcbd66;
   background-color: #1c2a3a;
   color: #f4f1ea;
   font-family: inherit;
-  width: 100%;
   box-sizing: border-box;
+
+  resize: none;        /* Allow vertical resize only */
+  min-height: 50px;        /* Consistent default height */
+  overflow-y: auto;        /* Adds scroll when needed */
+  overflow-x: hidden;      /* Prevent horizontal scroll */
 }
+
 .form-field::placeholder {
   color: #ccc;
 }
+form label {
+  display: block;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #ffffff;
+  line-height: 1.6;
+  font-family: inherit;
+}
+form h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-top: 32px;
+  color: #dcbd66;
+}
+form label {
+  font-style: normal;
+  opacity: 0.95;
+}
 </style>
-
 </head>
-<body>
 
+<body>
 <!-- Navigation -->
 <nav>
   <div class="nav-container">
@@ -217,27 +242,48 @@
   </div>
 </nav>
 
-<!-- Quotation Form -->
-<section class="quote-section">
-  <div class="contact-wrapper">
-    <div class="contact-intro">
+<!-- Dynamic heading -->
+<div class="contact-intro">
       <h2 id="quote-title">Request Quotation</h2>
       <p>Fill out this quick form and we’ll get back to you with a tailored quotation for your selected package.</p>
     </div>
 
-   <form id="quote-form" action="https://formspree.io/f/mzzgvdvy" method="POST">
+<!-- Quotation Form -->
+<section class="quote-section">
+  <div class="contact-wrapper">
+
+  <form id="quote-form" action="https://formspree.io/f/mzzgvdvy" method="POST">
   <h3>Tell us about your organization</h3>
 
-  <input type="text" name="Name" placeholder="1. What is your business /organization name?" required class="form-field">
-  <input type="text" name="Industry" placeholder="2. What industry or field are you in?" required class="form-field">
-  <textarea name="Products or Services" placeholder="3. Briefly describe the services you offer?" required class="form-field"></textarea>
-  <textarea name="Target Audience" placeholder="4. Briefly describe your target audience or ideal customer?" required class="form-field"></textarea>
-  <input type="text" name="Business Location" placeholder="5. Where is your business based or registered?" required class="form-field">
-  <textarea name="Existing Brand Materials" placeholder="6. Do you have any existing brand materials? (logos, brand books)" class="form-field"></textarea>
-  <input type="text" name="Website or Domain" placeholder="7. Do you currently have a website or domain? (If yes, please share the link)" class="form-field">
-  <textarea name="Contact Details" placeholder="8. What are your main contact details? (Phone, email, social media )" required class="form-field"></textarea>
-  <input type="text" name="Business Stage" placeholder="9. What stage is your business currently in? (Startup, Growing, Established, Re-branding)" required class="form-field">
-  <textarea name="Online Presence" placeholder="10. Online presence or links (social media, listings, etc.)" class="form-field"></textarea>
+  <label for="name">1. What is your business /organization name?</label>
+  <textarea id="name" name="Name" class="form-field" rows="2" required></textarea>
+
+  <label for="industry">2. What industry or field are you in?</label>
+  <textarea id="industry" name="Industry" class="form-field" rows="2" required></textarea>
+
+  <label for="services">3. Briefly describe the services you offer</label>
+  <textarea id="services" name="Products or Services" class="form-field" rows="3" required></textarea>
+
+  <label for="audience">4. Briefly describe your target audience or ideal customer</label>
+  <textarea id="audience" name="Target Audience" class="form-field" rows="3" required></textarea>
+
+  <label for="location">5. Where is your business based or registered?</label>
+  <textarea id="location" name="Business Location" class="form-field" rows="2" required></textarea>
+
+  <label for="materials">6. Do you have any existing brand materials? (logos, brand books)</label>
+  <textarea id="materials" name="Existing Brand Materials" class="form-field" rows="2"></textarea>
+
+  <label for="website">7. Do you currently have a website or domain? (If yes, please share the link)</label>
+  <textarea id="website" name="Website or Domain" class="form-field" rows="2"></textarea>
+
+  <label for="contacts">8. What are your main contact details? (Phone, email, social media)</label>
+  <textarea id="contacts" name="Contact Details" class="form-field" rows="2" required></textarea>
+
+  <label for="stage">9. What stage is your business currently in? (Startup, Growing, Established, Re-branding)</label>
+  <textarea id="stage" name="Business Stage" class="form-field" rows="2" required></textarea>
+
+  <label for="presence">10. Online presence or links (social media, listings, etc.)</label>
+  <textarea id="presence" name="Online Presence" class="form-field" rows="2"></textarea>
 
   <h3>Would you be interested in any of the following?</h3>
   <label><input type="checkbox" name="addons" value="Brand/ Website/ Marketing Add-Ons"> Add-Ons not included in this package</label>
@@ -246,7 +292,8 @@
 
   <button type="submit">Request Quote</button>
 </form>
-
+</div>
+</section>
 
 <!-- Footer -->
 <footer>
