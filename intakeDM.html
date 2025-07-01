@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Marketing Intake | Lenny and Layers</title>
   <link rel="icon" href="images/favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
@@ -17,7 +17,6 @@
       align-items: center;
       min-height: 100vh;
     }
-
     .question-container {
       max-width: 800px;
       width: 90%;
@@ -26,7 +25,6 @@
       border-radius: 12px;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     }
-
     h1 {
       font-family: 'Playfair Display', serif;
       color: #dcbd66;
@@ -34,14 +32,12 @@
       margin-bottom: 30px;
       text-align: center;
     }
-
     .question {
       font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 16px;
       font-family: 'Playfair Display', serif;
     }
-
     .progress-bar {
       width: 100%;
       height: 8px;
@@ -50,21 +46,18 @@
       overflow: hidden;
       margin: 0 auto 10px;
     }
-
     .progress-fill {
       height: 100%;
       background-color: #dcbd66;
       width: 0%;
       transition: width 0.3s ease;
     }
-
     #progressText {
       text-align: center;
       margin-bottom: 30px;
       font-size: 0.95rem;
       color: #dcbd66;
     }
-
     .options-container {
       display: flex;
       flex-direction: column;
@@ -72,7 +65,6 @@
       margin-top: 20px;
       align-items: center;
     }
-
     .option-btn {
       background: #dcbd66;
       color: #0d1b2a;
@@ -86,18 +78,12 @@
       text-align: center;
       transition: background-color 0.3s ease;
     }
-
-    .option-btn:hover {
-      background-color: #c4c4c4;
-    }
-
     .option-btn.selected {
       background-color: #c4c4c4;
       color: #0d1b2a;
       font-weight: bold;
       border: 2px solid #dcbd66;
     }
-
     .nav-buttons {
       display: flex;
       justify-content: center;
@@ -105,29 +91,16 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-
-    button {
-      font-family: 'Inter', sans-serif;
-    }
-
-    input[type="email"] {
+    input[type="email"], input[type="text"] {
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       padding: 14px;
       border-radius: 8px;
       border: 1px solid #dcbd66;
       background: #1c2a3a;
       color: #fff;
       font-size: 1rem;
-      margin: 20px auto;
-      display: block;
-    }
-
-    @media (max-width: 600px) {
-      .nav-buttons {
-        flex-direction: column;
-        gap: 12px;
-      }
+      margin-top: 16px;
     }
   </style>
 </head>
@@ -142,300 +115,349 @@
   </div>
 
   <script>
- const questions = [
-  {
-    q: "What are the primary business objectives that should align with your social media strategy?",
-    options: ["Brand Awareness", "Lead Generation", "Sales or Conversions", "Customer Service & Engagement"]
-  },
-  {
-    q: "How do you define clear, measurable goals for your social media efforts?",
-    options: ["Increase engagement", "Grow followers", "Boost website traffic", "Increase conversions"]
-  },
-  {
-    q: "What specific, time-bound targets are you setting?",
-    options: ["Grow Instagram followers by 15% in 60 days", "Achieve 20% higher engagement by Q4", "Get 50 LinkedIn sign-ups this month", "Increase TikTok sales by 10%"]
-  },
-  {
-    q: "What does success look like for your social media campaigns?",
-    options: ["Increased brand recognition", "Higher engagement", "Lead conversions", "Sales growth"]
-  },
-  {
-    q: "Are your goals realistic and achievable based on current resources and data?",
-    options: ["Yes, based on past campaign results", "Moderate increase in followers", "Achievable with additional ad spend", "Goals align with team capacity"]
-  },
-  {
-    q: "Who is your target audience, and how do you segment them?",
-    options: ["Age: 18–34", "Gender: Predominantly female", "Interests: Fitness, fashion, tech", "Location: Urban areas"]
-  },
-  {
-    q: "What are the main pain points or needs of your audience that your brand can address?",
-    options: ["Affordable products", "Time-saving solutions", "Personalized advice", "Social proof"]
-  },
-  {
-    q: "How will you use data to create detailed buyer personas?",
-    options: ["Survey results", "Website analytics", "Social media insights", "Customer reviews"]
-  },
-  {
-    q: "What platforms and content types resonate most with your audience?",
-    options: ["Instagram & TikTok", "Pinterest", "Facebook", "LinkedIn"]
-  },
-  {
-    q: "How can you gather insights directly from your followers?",
-    options: ["Instagram polls", "Surveys via email or social", "Engaging in DMs or comments", "Live Q&A sessions"]
-  },
-  {
-    q: "Which tools will you use to analyze audience demographics and behavior?",
-    options: ["Instagram Insights", "Google Analytics", "Facebook Audience Insights", "Twitter Analytics"]
-  },
-  {
-    q: "Which platforms are most popular with your target audience?",
-    options: ["Instagram", "TikTok", "Facebook", "LinkedIn"]
-  },
-  {
-    q: "Does your content fit the format and features of the selected platforms?",
-    options: ["Instagram: Stories, Reels", "TikTok: Challenges, trends", "LinkedIn: Articles, insights", "Facebook: Events, community posts"]
-  },
-  {
-    q: "How do the platform's strengths align with your marketing goals?",
-    options: ["Instagram: Awareness & engagement", "TikTok: Viral content", "LinkedIn: B2B networking", "Facebook: Community-building"]
-  },
-  {
-    q: "How do your competitors use social media, and what can you learn from them?",
-    options: ["Top-performing content types", "Influencer partnerships", "Ad messaging", "Hashtag trends"]
-  },
-  {
-    q: "Are you considering niche platforms or emerging trends?",
-    options: ["TikTok", "Pinterest", "Snapchat", "YouTube Shorts"]
-  },
-  {
-    q: "What are the main content pillars that will guide your content creation?",
-    options: ["Education", "Inspiration", "Entertainment", "Product-focused"]
-  },
-  {
-    q: "How do you decide which content formats to prioritize?",
-    options: ["Video content", "Images", "Polls", "Infographics"]
-  },
-  {
-    q: "What’s your content posting schedule?",
-    options: ["Instagram: 4–5 times/week", "Facebook: 3–4 posts/week", "TikTok: 3–4 videos/week", "LinkedIn: 2–3 posts/week"]
-  },
-  {
-    q: "What key dates should be included in your content calendar?",
-    options: ["Holidays", "Product launches", "Industry events", "Seasonal campaigns"]
-  },
-  {
-    q: "How will you use calls-to-action and hashtags to increase engagement?",
-    options: ["CTAs: 'Click link in bio'", "Hashtags: Branded + trending", "Polls & prompts", "User-generated content"]
-  },
-  {
-    q: "Which tools will you use to create and schedule your content?",
-    options: ["Canva", "Buffer", "Later", "Trello"]
-  },
-  {
-    q: "Which influencers align with your brand’s image and audience?",
-    options: ["Fitness influencers", "Fashion bloggers", "Tech experts", "Parenting bloggers"]
-  },
-  {
-    q: "How do you assess an influencer’s reach, engagement, and authenticity?",
-    options: ["Follower count", "Engagement metrics", "Content style & values", "Past partnerships"]
-  },
-  {
-    q: "What types of partnerships can help amplify your reach?",
-    options: ["Co-branded campaigns", "Influencer collabs", "Charity promotions", "Event partnerships"]
-  },
-  {
-    q: "How can you build long-term influencer/brand relationships?",
-    options: ["Regular communication", "Exclusive offers", "Co-hosted events", "Performance-based incentives"]
-  },
-  {
-    q: "What platforms will you leverage for influencer partnerships?",
-    options: ["Instagram", "TikTok", "YouTube", "Facebook"]
-  },
-  {
-    q: "What’s your total campaign budget and how will you divide it?",
-    options: ["Instagram: 40%", "Facebook: 30%", "TikTok: 20%", "LinkedIn: 10%"]
-  },
-  {
-    q: "How will you calculate ad spend efficiency?",
-    options: ["CPC", "CPM", "CTR", "A/B testing"]
-  },
-  {
-    q: "What KPIs will you use to track paid campaign performance?",
-    options: ["CPA", "ROAS", "CTR", "Conversion rate"]
-  },
-  {
-    q: "Are you allocating paid budget to influencer campaigns?",
-    options: ["Yes — 20% for sponsored content", "Focus on micro-influencers", "Run influencer giveaways", "No — not part of strategy"]
-  },
-  {
-    q: "How will you monitor and adjust ad budgets in real time?",
-    options: ["Use Ads Manager", "Track KPIs daily", "Pause poor performers", "Reallocate to winners"]
-  },
-  {
-    q: "What scheduling or automation tools will you use?",
-    options: ["Buffer", "Later", "Hootsuite", "Sprout Social"]
-  },
-  {
-    q: "How will you engage with followers in real-time?",
-    options: ["Daily DMs", "Social inbox tools", "Auto replies", "Comment on user posts"]
-  },
-  {
-    q: "How will you handle paid ad creation and targeting?",
-    options: ["Audience segmentation", "High-quality creatives", "Clear CTAs", "A/B testing"]
-  },
-  {
-    q: "How will you ensure consistent execution across platforms?",
-    options: ["Content calendar", "Approval workflows", "Team alignment", "Weekly syncs"]
-  },
-  {
-    q: "What KPIs will you track for your social strategy?",
-    options: ["Engagement rate", "Follower growth", "Website traffic", "Lead generation"]
-  },
-  {
-    q: "How often will you review and adjust strategy?",
-    options: ["Weekly", "Monthly", "Quarterly", "After campaigns"]
-  },
-  {
-    q: "Which analytics tools will you use?",
-    options: ["Google Analytics", "Facebook Insights", "Instagram Insights", "Hootsuite Analytics"]
-  },
-  {
-    q: "How will you run A/B tests to optimize content and ads?",
-    options: ["Test headlines", "Compare visuals", "Post timing", "CTA variations"]
-  },
-  {
-    q: "What steps will you take to refine your strategy based on insights?",
-    options: ["Adapt to trends", "Reallocate budget", "Update personas", "Experiment with tactics"]
-  }
+const questions = [
+
+// starter package //
+{
+  q: "Do you have any colors or visual styles you’d like to explore or avoid?",
+  options: [
+    "Explore earth tones",
+    "Explore pastels",
+    "Explore bold colors",
+    "Minimal and clean style",
+    "Vintage or retro style",
+    "Avoid bright/neon colors",
+    "Avoid overly busy designs",
+    "Other"
+  ]
+},
+{
+  q: "Are there any reference brands you admire? What about them stands out?",
+  options: ["Other"]
+},
+{
+  q: "What tone or mood should your visual identity communicate?",
+  options: [
+    "Playful and fun",
+    "Elegant and sophisticated",
+    "Minimal and modern",
+    "Warm and welcoming",
+    "Bold and dynamic",
+    "Artistic or abstract",
+    "Other"
+  ]
+},
+{
+  q: "What should your one-pager or bio-link site focus on?",
+  options: [
+    "Showcasing products or services",
+    "Displaying portfolio or past work",
+    "Booking appointments or consultations",
+    "Sharing bio or personal story",
+    "Contact information",
+    "Other"
+  ]
+},
+{
+  q: "Do you have any existing content or photos you'd like included?",
+  options: [
+    "Logo files",
+    "Professional headshots or team photos",
+    "Product or service images",
+    "Written content",
+    "Testimonials or reviews",
+    "No existing content yet",
+    "Other"
+  ]
+},
+
+// growth kit//
+{
+  q: "What are the core goals of your website?",
+  options: [
+    "Sell products or services",
+    "Attract and book new clients",
+    "Share information or resources",
+    "Build authority and trust in your industry",
+    "Grow your email list",
+    "Other"
+  ]
+},
+{
+  q: "What 5–6 pages would you like on your site?",
+  options: [
+    "Home",
+    "About",
+    "Services or Offerings",
+    "Portfolio or Gallery",
+    "Blog",
+    "Contact",
+    "FAQ",
+    "Shop or Store",
+    "Other"
+  ]
+},
+{
+  q: "Do you want a blog?",
+  options: [   
+    "No",
+    "Not sure yet",
+    "If yes, what other topics will you write about? (Short answer)"
+  ]
+},
+{
+  q: "What’s your current email marketing tool (if any)?",
+  options: [
+    "Mailchimp",
+    "ConvertKit",
+    "Flodesk",
+    "Klaviyo",
+    "ActiveCampaign",
+    "I don’t use one yet",
+    "Other"
+  ]
+},
+{
+  q: "What should your welcome email sequence aim to achieve?",
+  options: [
+    "Introduce my brand and story",
+    "Educate or provide value",
+    "Encourage first purchase or booking",
+    "Invite subscribers to follow on social media",
+    "Other"
+  ]
+},
+{
+  q: "What platforms do you use most for content?",
+  options: [
+    "Instagram",
+    "LinkedIn",
+    "TikTok",
+    "Pinterest",
+    "YouTube",
+    "Facebook",
+    "Email Newsletter",
+    "Other"
+  ]
+},
+{
+  q: "Would you like the 2-month content plan to be...",
+  options: [
+    "Educational",
+    "Promotional",
+    "Inspirational",
+    "A mix of all three",
+    "Other"
+  ]
+},
+{
+  q: "Do you use (or plan to use) Google Analytics or other tracking tools?",
+  options: [
+    "Yes, currently using",
+    "Planning to set up",
+    "No plans to use",
+    "Other"
+  ]
+},
+
+//premium kit//
+{
+  q: "What’s the core story or mission your brand needs to communicate clearly?",
+  options: ["Other"]
+},
+{
+  q: "Who are your key competitors, and how do you want to be different?",
+  options: ["Other"]
+},
+{
+  q: "Do you have any testimonials, case studies, or success stories to include?",
+  options: [
+    "Yes — I have a few ready",
+    "I’m working on collecting them",
+    "Not yet — I’ll need help gathering or writing them",
+    "Other"
+  ]
+},
+{
+  q: "What is your ideal launch timeline? Are there any deadlines or events we should know about?",
+  options: ["other"]
+},
+{
+  q: "Would you prefer your brand film to be...",
+  options: [
+    "Testimonial-based",
+    "Scripted",
+    "Lifestyle-focused",
+    "Abstract or artistic",
+    "Other"
+  ]
+},
+{
+  q: "What digital assets would be useful for press/media?",
+  options: [
+    "Founder bio",
+    "High-quality product photos",
+    "Mission or brand values",
+    "Logo files and brand colors",
+    "Press release or launch summary",
+    "Other"
+  ]
+},
+{
+  q: "What kind of lead magnet would appeal to your audience?",
+  options: [
+    "Checklist",
+    "E-book or mini-guide",
+    "Free template or resource",
+    "Discount code or offer",
+    "Free session or consultation",
+    "Other"
+  ]
+},
+{
+  q: "Where do you want to drive your leads after download?",
+  options: [
+    "Email welcome sequence",
+    "Booking or free consultation page",
+    "Sales page for a specific offer",
+    "Private community or group",
+    "Thank-you page with a special offer",
+    "Other"
+  ]
+}
+
 ];
 
+let current = 0;
+const answers = [];
+const questionBox = document.getElementById("questionBox");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+const form = document.getElementById("intakeForm");
 
-    let current = 0;
-    const answers = [];
-    const questionBox = document.getElementById("questionBox");
-    const progressFill = document.getElementById("progressFill");
-    const progressText = document.getElementById("progressText");
-    const form = document.getElementById("intakeForm");
+function updateProgress() {
+  const percentage = Math.round((current / questions.length) * 100);
+  progressFill.style.width = `${percentage}%`;
+  progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
+}
 
-    function updateProgress() {
-      const percentage = Math.round((current / questions.length) * 100);
-      progressFill.style.width = `${percentage}%`;
-      progressText.textContent = `${Math.min(current + 1, questions.length)} / ${questions.length}`;
-    }
+function showQuestion(index) {
+  const currentQ = questions[index];
+  const selected = answers[index]?.answer || [];
 
-    function showQuestion(index) {
-      const currentQ = questions[index];
-      const selectedAnswer = answers[index]?.answer || "";
+  const optionsHtml = currentQ.options.map(opt => {
+    const isOther = opt.toLowerCase().includes("other");
+    const selectedClass = selected.includes(opt) ? 'selected' : '';
+    return `<button type="button" class="option-btn ${selectedClass}" data-value="${opt}" data-other="${isOther}">${opt}</button>`;
+  }).join("");
 
-      const optionsHtml = currentQ.options.map(option => {
-        const isSelected = selectedAnswer === option;
-        return `<button type="button" class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption('${option.replace(/'/g, "\\'")}')">${option}</button>`;
-      }).join("");
+  questionBox.innerHTML = `
+    <label class="question">${currentQ.q}</label>
+    <div class="options-container">${optionsHtml}</div>
+    <input type="text" id="customAnswer" name="custom" style="display:none" placeholder="Please specify..." />
+    <div class="nav-buttons">
+      ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff">Previous</button>` : ""}
+      <button type="button" onclick="goNext()" class="option-btn">Next</button>
+    </div>
+  `;
 
-      questionBox.innerHTML = `
-        <label class="question">${currentQ.q}</label>
-        <div class="options-container">${optionsHtml}</div>
-        <div class="nav-buttons">
-          ${index > 0 ? `<button type="button" onclick="goBack()" class="option-btn" style="background:#2a3d56; color:#fff;">Previous</button>` : ""}
-        </div>
-      `;
-
-      updateProgress();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function selectOption(answer) {
-      answers[current] = {
-        question: questions[current].q,
-        answer: answer
-      };
-      current++;
-      if (current < questions.length) {
-        showQuestion(current);
-      } else {
-        buildSubmission();
-      }
-    }
-
-    function goBack() {
-      if (current > 0) {
-        current--;
-        showQuestion(current);
-      }
-    }
-
-    function buildSubmission() {
-      let message = "";
-      answers.forEach((item, index) => {
-        message += `${index + 1}. ${item.question}\n${item.answer}\n\n`;
-      });
-
-      questionBox.innerHTML = "";
-
-      const label = document.createElement("label");
-      label.className = "question";
-      label.textContent = "You're almost done! Please provide your email so we can follow up:";
-      questionBox.appendChild(label);
-
-      const hiddenInput = document.createElement("input");
-      hiddenInput.type = "hidden";
-      hiddenInput.name = "message";
-      hiddenInput.value = message;
-      questionBox.appendChild(hiddenInput);
-
-      const emailInput = document.createElement("input");
-      emailInput.type = "email";
-      emailInput.name = "email";
-      emailInput.placeholder = "Your Email (for follow-up)";
-      emailInput.required = true;
-      emailInput.autofocus = true;
-      questionBox.appendChild(emailInput);
-
-      const submitBtn = document.createElement("button");
-      submitBtn.type = "submit";
-      submitBtn.className = "option-btn";
-      submitBtn.textContent = "Submit";
-
-      const backBtn = document.createElement("button");
-      backBtn.type = "button";
-      backBtn.textContent = "Previous";
-      backBtn.className = "option-btn";
-      backBtn.style.background = "#2a3d56";
-      backBtn.style.color = "#fff";
-      backBtn.onclick = goBack;
-
-      const navDiv = document.createElement("div");
-      navDiv.className = "nav-buttons";
-      navDiv.appendChild(backBtn);
-      navDiv.appendChild(submitBtn);
-      questionBox.appendChild(navDiv);
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          window.location.href = "thankyou.html";
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Submission failed. Please try again later.");
-      });
+  document.querySelectorAll('.option-btn[data-value]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('selected');
+      const isOther = btn.dataset.other === "true";
+      document.getElementById("customAnswer").style.display = isOther && btn.classList.contains("selected") ? "block" : "none";
     });
+  });
 
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function goNext() {
+  const selected = [...document.querySelectorAll(".option-btn.selected")].map(b => b.dataset.value);
+  const customVal = document.getElementById("customAnswer").value;
+  if (customVal && selected.includes("Other")) selected.push(`Other: ${customVal}`);
+  answers[current] = {
+    question: questions[current].q,
+    answer: selected
+  };
+  current++;
+  current < questions.length ? showQuestion(current) : buildSubmission();
+}
+
+function goBack() {
+  if (current > 0) {
+    current--;
     showQuestion(current);
-  </script>
+  }
+}
+
+function buildSubmission() {
+  let message = "";
+  answers.forEach((item, i) => {
+    message += `${i + 1}. ${item.question}\n${item.answer.join(', ')}\n\n`;
+  });
+
+  questionBox.innerHTML = "";
+  const label = document.createElement("label");
+  label.className = "question";
+  label.textContent = "You're almost done! Please provide your email:";
+
+  const hiddenInput = document.createElement("input");
+  hiddenInput.type = "hidden";
+  hiddenInput.name = "message";
+  hiddenInput.value = message;
+
+  const emailInput = document.createElement("input");
+  emailInput.type = "email";
+  emailInput.name = "email";
+  emailInput.required = true;
+  emailInput.placeholder = "Enter your email";
+
+  const submitBtn = document.createElement("button");
+  submitBtn.type = "submit";
+  submitBtn.className = "option-btn";
+  submitBtn.textContent = "Submit";
+
+  const backBtn = document.createElement("button");
+  backBtn.type = "button";
+  backBtn.textContent = "Previous";
+  backBtn.className = "option-btn";
+  backBtn.style.background = "#2a3d56";
+  backBtn.style.color = "#fff";
+  backBtn.onclick = goBack;
+
+  const navDiv = document.createElement("div");
+  navDiv.className = "nav-buttons";
+  navDiv.appendChild(backBtn);
+  navDiv.appendChild(submitBtn);
+
+  questionBox.appendChild(label);
+  questionBox.appendChild(hiddenInput);
+  questionBox.appendChild(emailInput);
+  questionBox.appendChild(navDiv);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+    .then(response => {
+      if (response.ok) {
+        window.location.href = "thankyou.html";
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    })
+    .catch(err => alert("Submission error. Please try again later."));
+});
+
+showQuestion(current);
+</script>
 </body>
 </html>
