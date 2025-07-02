@@ -33,16 +33,16 @@
       text-align: center;
     }
     .question {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  padding: 20px; 
-  display: flex;
-  justify-content: center; 
-  align-items: center;     
-  flex-wrap: wrap;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      padding: 10px; 
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+      flex-wrap: wrap;
 }
     .progress-bar {
       width: 100%;
@@ -181,10 +181,13 @@
 <body>
   <div id="idModal">
     <div id="idModalContent">
-      <h2>Enter Your Questionnaire ID</h2>
-      <p>You can combine multiple sets (e.g. 1-2-x) to customize your questionnaire.</p>
-      <input type="text" id="questionnaireId" placeholder="e.g. 1 or 1-2-x" />
-      <button id="startBtn">Start</button>
+      <h2>Start Your Intake</h2>
+      <p>To begin, enter the unique ID provided to you. <br> 
+        This will provide a questionnaire based on your project's needs for you to answer to the best of your capailities.
+       </p>
+      <input type="text" id="questionnaireId" placeholder="ID" />
+      <button id="startBtn">Begin</button>
+
     </div>
   </div>
 
@@ -199,31 +202,282 @@
 
   <script>
     const questionSets = {
-      "1": {
-        title: "Starter Kit Questionnaire",
-        questions: [
-          { q: "What message do you want your logo to send?", examples: ["Bright Future Coaching", "Helping You Shine"] },
-          { q: "What mood should your identity communicate?", examples: ["Minimal and modern", "Warm and welcoming", "Bold and dynamic"] }
-        ]
-      },
+
+  // starter kit set//
+     "1": {
+  title: "Starter Kit",
+  questions: [
+    {
+      q: "What name, tagline, or message do you want on your logo? (Specify below)",
+      examples: [
+        "Company name only -",
+        "Name & tagline -",
+        "Slogan or mission-focused message -",
+        "Short, punchy phrases -"
+      ]
+    },
+    {
+      q: "Do you have any colors or visual styles you'd like to explore or avoid? (Specify below)",
+      examples: [
+        "Preferences for my brand's color -",
+        "Avoid overused or clashing colors -",
+        "Style arche-type preferences -",
+        "Reference my industry standards -"
+      ]
+    },
+    {
+      q: "Are there any reference brands you admire? What about them stands out?",
+      examples: [
+        "Mention the brand -",
+        "I admire these traits -",
+        "Im nspired by the design aesthetic of -",
+      ]
+    },
+    {
+      q: "What tone or mood should your visual identity communicate?",
+      examples: [
+        "Playful and fun (for creative or youth-focused brands)",
+        "Elegant and sophisticated (for fashion, luxury, or wellness)",
+        "Minimal and clean (for modern portfolios, or professional services)",
+        "Warm and inviting (for personal brands or community-focused sites)"
+      ]
+    },
+    {
+      q: "What should your one-pager or bio-link site focus on?",
+      examples: [
+        "Portfolio or gallery (for artists, creators, designers)",
+        "Bookings or scheduling (for coaches, consultants, beauty, or wellness)",
+        "Product showcase or sales (for e-commerce or handmade products)",
+        "About/bio and contact info (for personal brands or freelancers)",
+        "Links to social media, newsletters, or an external stores"
+      ]
+    },
+    {
+      q: "Do you have any existing content or photos you'd like included?",
+      examples: [
+        "Professional headshots or product photos",
+        "Social media images or existing graphics",
+        "Logo files or previous branding elements",
+        "Copy/text from bios, misson statements, service descriptions",
+      ]
+    }
+  ]
+},
+
+// growth kit set//
       "2": {
-        title: "Growth Kit Questionnaire",
-        questions: [
-          { q: "What are the core goals of your website?", examples: ["Sell products", "Attract clients", "Build trust"] },
-          { q: "What 5–6 pages do you want on your site?", examples: ["Home", "About", "Contact"] }
-        ]
-      },
+  title: "Growth Kit",
+  questions: [
+    {
+      q: "What are the core goals of your website?",
+      examples: [
+        "Sell products or services",
+        "Attract and convert new clients",
+        "Share valuable information or thought leadership",
+        "Build brand credibility and authority",
+        "Grow an email list or audience",
+        "Serve as a digital portfolio or resume"
+      ]
+    },
+    {
+      q: "What 5–6 pages would you like on your site?",
+      examples: [
+        "Home",
+        "About",
+        "Services or Products",
+        "Portfolio or Gallery",
+        "Blog",
+        "Contact",
+        "Testimonials, FAQs, or Shop"
+      ]
+    },
+    {
+      q: "Do you want a blog? If yes, what topics will you write about?",
+      examples: [
+        "Yes to support SEO and showcase expertise",
+        "No blog – if the focus is purely sales or service-based"
+      ]
+    },
+    {
+      q: "What's your current email marketing tool (if no just skip)?",
+      examples: [
+        "Mailchimp",
+        "ConvertKit",
+        "Flodesk",
+        "Klaviyo",
+        "Active Campaign"
+      ]
+    },
+    {
+      q: "What should your welcome email sequence aim to achieve?",
+      examples: [
+        "Introduce the brand and founder",
+        "Share story or mission",
+        "Educate or offer value (freebie, tips, video)",
+        "Drive first purchase or booking",
+        "Gaining follows on socials",
+        "Replying to emails"
+      ]
+    },
+    {
+      q: "What platforms do you use most for content?",
+      examples: [
+        "Instagram",
+        "Facebook",
+        "LinkedIn",
+        "TikTok",
+        "Pinterest",
+        "YouTube"
+      ]
+    },
+    {
+      q: "Would you like the 2-month content plans to be:",
+      examples: [
+        "Educational",
+        "Promotional",
+        "Inspirational",
+        "Trendy"
+      ]
+    },
+    {
+      q: "Do you use (or plan to use) Google Analytics or another tracking tool?",
+      examples: [
+        "Google Analytics",
+        "Meta Pixel",
+        "Microsoft Clarity (heatmaps)",
+        "Search Console",
+        "No"
+      ]
+    }
+  ]
+},
+
+// premium kit set//
       "3": {
-        title: "Premium Kit Questionnaire",
-        questions: [
-          { q: "What story should your brand tell?", examples: ["Natural skincare for confidence", "Empowering youth"] },
-          { q: "What kind of brand film would work best?", examples: ["Lifestyle-focused", "Testimonial-based"] }
-        ]
-      },
+  title: "Premium Kit",
+  questions: [
+    {
+      q: "What's the core story or mission your brand needs to communicate clearly?",
+      examples: [
+        "Why I started this narrative",
+        "A mission to solve a problem",
+        "Values-driven messaging",
+        "A clear brand promise"
+      ]
+    },
+    {
+      q: "Who are your key competitors, and how do you want to be different?",
+      examples: [
+        "Industry proximity",
+        "Target audience",
+        "Aspirational brands",
+        "Tone/voice or visual style",
+        "Better service/customer experience",
+        "Personal/ethical/authentic approach",
+        "Unique product or niche focus"
+      ]
+    },
+    {
+      q: "Do you have any testimonials, case studies, or success stories to include in your messaging or launch?",
+      examples: [
+        "Yes – I have quotes or DMs I can use",
+        "Yes – I've collected results but need help formatting them",
+        "No – I'm looking to get some pre-launch"
+      ]
+    },
+    {
+      q: "What is your ideal launch timeline? Are there any deadlines or events?",
+      examples: [
+        "As soon as possible",
+        "No timelines to launch"
+      ]
+    },
+    {
+      q: "What should your welcome email sequence aim to achieve?",
+      examples: [
+        "Introduce the brand and founder",
+        "Share story or mission",
+        "Educate or offer value (freebie, tips, video)",
+        "Drive first purchase or booking",
+        "Gaining follows on socials",
+        "Replying to emails"
+      ]
+    },
+    {
+      q: "What platforms do you use most for content?",
+      examples: [
+        "Instagram",
+        "Facebook",
+        "LinkedIn",
+        "TikTok",
+        "Pinterest",
+        "YouTube"
+      ]
+    },
+    {
+      q: "Would you like the 2-month content plans to be:",
+      examples: [
+        "Educational",
+        "Promotional",
+        "Inspirational",
+        "Trendy"
+      ]
+    },
+    {
+      q: "Do you use (or plan to use) Google Analytics or another tracking tool?",
+      examples: [
+        "Google Analytics",
+        "Meta Pixel",
+        "Microsoft Clarity (heatmaps)",
+        "Search Console",
+        "No"
+      ]
+    },
+    {
+      q: "What would you prefer your brand film to be?",
+      examples: [
+        "Testimonial-based (builds trust, great for service providers)",
+        "Lifestyle (fashion, wellness, or aspirational brands)",
+        "Scripted (controlled narrative, often mission-driven)",
+        "Abstract/artistic (common for high-end or creative brands)"
+      ]
+    },
+    {
+      q: "What digital assets would be useful for press/media?",
+      examples: [
+        "Founder headshots and bio",
+        "Product or brand photos",
+        "Press release or launch summary",
+        "Mission/values or about us pages"
+      ]
+    },
+    {
+      q: "What kind of lead magnet would appeal to your audience?",
+      examples: [
+        "Checklist or template (highly shareable)",
+        "Free e-book or guide (used by coaching, B2B or service brands)",
+        "Free session or mini training (used by personal brands or consultants)",
+        "Discount codes or limited-time offers (used by e-commerce)"
+      ]
+    },
+    {
+      q: "Where do you want to drive your leads after download?",
+      examples: [
+        "Email nurture sequence or welcome series",
+        "Free discovery call or booking page",
+        "Sales page or limited-time offer",
+        "Private community or challenge",
+        "Social media follow-up or DMs"
+      ]
+    }
+  ]
+},
+
+// custom client kit set//
       "x": {
-        title: "Custom Client Add-On",
+        title: "Custom Client kit",
         questions: [
-          { q: "What makes your brand truly unique?", examples: ["Our mission", "Our founder story"] },
+          { q: "What makes your brand truly unique?", examples: ["Our mission -", "Our founder story -"] },
           { q: "What tools or platforms are you currently using?", examples: ["Canva", "Squarespace", "Google Drive"] }
         ]
       }
