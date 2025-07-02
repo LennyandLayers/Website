@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Marketing Intake | Lenny and Layers</title>
   <link rel="icon" href="images/favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
@@ -45,7 +45,7 @@
       background-color: #2a3d56;
       border-radius: 6px;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin: 0 auto 10px;
     }
     .progress-fill {
       height: 100%;
@@ -59,34 +59,31 @@
       font-size: 0.95rem;
       color: #dcbd66;
     }
-    .options-container {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 0.95rem;
-      color: #aaa;
-    }
-    .nav-buttons {
+    .examples-container {
       display: flex;
-      justify-content: center;
-      margin-top: 30px;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
     }
-    .secondary-btn {
-      background: transparent;
-      color: #dcbd66;
-      padding: 12px 24px;
+    .example-btn {
+      background: #2a3d56;
+      color: #f4f1ea;
       border: 1px solid #dcbd66;
+      padding: 10px 16px;
       border-radius: 8px;
-      font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: 0.95rem;
+      transition: background 0.3s ease;
     }
-    .secondary-btn:hover {
-      background-color: #dcbd66;
+    .example-btn.selected {
+      background: #dcbd66;
       color: #0d1b2a;
+      font-weight: bold;
     }
-    input[type="email"], input[type="text"] {
+    #customAnswer {
+      display: block;
+      margin: 0 auto 20px;
       width: 100%;
       max-width: 500px;
       padding: 14px;
@@ -95,48 +92,98 @@
       background: #1c2a3a;
       color: #fff;
       font-size: 1rem;
-      margin: 20px auto 10px auto;
-      display: block;
       text-align: center;
     }
-    .modal {
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .nav-btn {
+      background: none;
+      border: 2px solid #dcbd66;
+      color: #dcbd66;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .nav-btn:hover {
+      background: #dcbd66;
+      color: #0d1b2a;
+    }
+    input[type="email"] {
+      display: block;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 500px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #dcbd66;
+      background: #1c2a3a;
+      color: #fff;
+      font-size: 1rem;
+    }
+    #idModal {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
-    .modal-box {
+    #idModalContent {
       background: #0d1b2a;
-      padding: 30px;
+      padding: 40px;
       border-radius: 10px;
       text-align: center;
       max-width: 400px;
       width: 90%;
+      color: #f4f1ea;
     }
-    .modal-box h2 {
+    #idModalContent h2 {
       font-family: 'Playfair Display', serif;
-      margin-bottom: 16px;
       color: #dcbd66;
+      margin-bottom: 20px;
     }
-    .modal-box input {
-      margin: 20px auto;
+    #idModalContent input[type="text"] {
+      width: 80%;
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #dcbd66;
+      background: #1c2a3a;
+      color: #fff;
+      text-align: center;
+    }
+    #startBtn {
+      background: #dcbd66;
+      color: #0d1b2a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="modal" id="idModal">
-    <div class="modal-box">
-      <h2>Select Your Questionnaire</h2>
-      <p>Please enter the code provided to you:</p>
-      <input type="text" id="questionnaireId" placeholder="Enter ID" />
-      <button class="secondary-btn" onclick="loadQuestions()">Continue</button>
+  <div id="idModal">
+    <div id="idModalContent">
+      <h2>Enter Your Questionnaire ID</h2>
+      <p>Use the ID provided to you to begin the correct questionnaire.</p>
+      <input type="text" id="questionnaireId" placeholder="e.g. 1 for Starter Kit" />
+      <button id="startBtn">Start</button>
     </div>
   </div>
 
-  <div class="question-container" style="display:none;" id="questionnaireContainer">
+  <div class="question-container" style="display:none">
     <h1 id="formTitle">Digital Marketing Questionnaire</h1>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     <p id="progressText"></p>
@@ -146,81 +193,87 @@
   </div>
 
   <script>
-    const allQuestionSets = {
-      x: {
-        title: "Starter Brand Kit",
+    const questionSets = {
+      "1": {
+        title: "Starter Kit Questionnaire",
         questions: [
-          { q: "What tone or mood should your visual identity communicate?", examples: ["Playful and fun", "Elegant and sophisticated", "Minimal and modern"] },
-          { q: "What should your one-pager or bio-link site focus on?", examples: ["Showcasing products", "Booking consultations", "Sharing personal story"] }
+          { q: "What message do you want your logo to send?", examples: ["Bright Future Coaching", "Helping You Shine"] },
+          { q: "What mood should your identity communicate?", examples: ["Minimal and modern", "Warm and welcoming", "Bold and dynamic"] }
         ]
       },
-      y: {
-        title: "Growth Web Kit",
+      "2": {
+        title: "Growth Kit Questionnaire",
         questions: [
-          { q: "What are the core goals of your website?", examples: ["Sell products", "Attract clients", "Build authority"] },
-          { q: "Would you like the 2-month content plan to be...", examples: ["Educational", "Inspirational", "Promotional"] }
+          { q: "What are the core goals of your website?", examples: ["Sell products", "Attract clients", "Build trust"] },
+          { q: "What 5–6 pages do you want on your site?", examples: ["Home", "About", "Contact"] }
         ]
       },
-      z: {
-        title: "Premium Brand Launch Kit",
+      "3": {
+        title: "Premium Kit Questionnaire",
         questions: [
-          { q: "What’s the core story your brand should communicate?", examples: ["Helping women feel confident", "Solving a personal pain point", "Creating community"] },
-          { q: "Where do you want to drive your leads after download?", examples: ["Booking page", "Sales page", "Private community"] }
+          { q: "What story should your brand tell?", examples: ["Natural skincare for confidence", "Empowering youth"] },
+          { q: "What kind of brand film would work best?", examples: ["Lifestyle-focused", "Testimonial-based"] }
         ]
       }
     };
 
-    let current = 0;
     let selectedSet = null;
+    let questions = [];
+    let current = 0;
     const answers = [];
     const questionBox = document.getElementById("questionBox");
     const progressFill = document.getElementById("progressFill");
     const progressText = document.getElementById("progressText");
     const form = document.getElementById("intakeForm");
 
-    function loadQuestions() {
-      const id = document.getElementById("questionnaireId").value.trim().toLowerCase();
-      if (!allQuestionSets[id]) {
-        alert("Invalid ID. Use: starter, growth, or premium.");
-        return;
-      }
-      selectedSet = allQuestionSets[id];
-      document.getElementById("formTitle").textContent = selectedSet.title + " Questionnaire";
-      document.getElementById("idModal").style.display = "none";
-      document.getElementById("questionnaireContainer").style.display = "block";
-      showQuestion(current);
-    }
-
     function updateProgress() {
-      const percentage = Math.round((current / selectedSet.questions.length) * 100);
-      progressFill.style.width = `${percentage}%`;
-      progressText.textContent = `${Math.min(current + 1, selectedSet.questions.length)} / ${selectedSet.questions.length}`;
+      const percent = Math.round((current / questions.length) * 100);
+      progressFill.style.width = `${percent}%`;
+      progressText.textContent = `${current + 1} / ${questions.length}`;
     }
 
     function showQuestion(index) {
-      const qObj = selectedSet.questions[index];
+      const currentQ = questions[index];
+      const savedAnswers = answers[index]?.answer || [];
+      const savedCustom = answers[index]?.custom || "";
+
+      const examplesHtml = (currentQ.examples || []).map(example => {
+        const isSelected = savedAnswers.includes(example);
+        return `<button type="button" class="example-btn ${isSelected ? "selected" : ""}" data-value="${example}">${example}</button>`;
+      }).join("");
+
       questionBox.innerHTML = `
-        <label class="question">${qObj.q}</label>
-        <input type="text" id="userAnswer" placeholder="Your answer" />
-        <div class="options-container">Examples: ${qObj.examples.join(", ")}</div>
+        <label class="question">${currentQ.q}</label>
+        <div class="examples-container">${examplesHtml}</div>
+        <input type="text" id="customAnswer" placeholder="Your answer" value="${savedCustom}" />
         <div class="nav-buttons">
-          ${index > 0 ? `<button type="button" class="secondary-btn" onclick="goBack()">Previous</button>` : ""}
-          <button type="button" class="secondary-btn" onclick="goNext()">Next</button>
+          ${index > 0 ? `<button type="button" onclick="goBack()" class="nav-btn">Previous</button>` : ""}
+          <button type="button" onclick="goNext()" class="nav-btn">Next</button>
         </div>
       `;
+
+      document.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle("selected");
+          const selectedValues = [...document.querySelectorAll(".example-btn.selected")].map(b => b.dataset.value);
+          document.getElementById("customAnswer").value = selectedValues.join(", ");
+        });
+      });
+
       updateProgress();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function goNext() {
-      const answer = document.getElementById("userAnswer").value.trim();
-      if (!answer) return alert("Please provide an answer before continuing.");
+      const selected = [...document.querySelectorAll(".example-btn.selected")].map(b => b.dataset.value);
+      const custom = document.getElementById("customAnswer").value.trim();
       answers[current] = {
-        question: selectedSet.questions[current].q,
-        answer
+        question: questions[current].q,
+        answer: selected,
+        custom: custom
       };
       current++;
-      current < selectedSet.questions.length ? showQuestion(current) : buildSubmission();
+      current < questions.length ? showQuestion(current) : buildSubmission();
     }
 
     function goBack() {
@@ -231,20 +284,21 @@
     }
 
     function buildSubmission() {
-      let message = "";
-      answers.forEach((item, i) => {
-        message += `${i + 1}. ${item.question}\n${item.answer}\n\n`;
-      });
+      let message = selectedSet.questions.map((q, i) => {
+        const entry = answers[i] || { answer: [], custom: "" };
+        return `${i + 1}. ${q.q}\n${entry.custom || entry.answer.join(", ")}`;
+      }).join("\n\n");
 
       questionBox.innerHTML = `
-        <label class="question">You're almost done! Please provide your email:</label>
-        <input type="hidden" name="message" value="${message}">
-        <input type="email" name="email" required placeholder="Enter your email">
+        <label class="question">You're almost done! Please enter your email:</label>
+        <input type="hidden" name="message" value="${message}" />
+        <input type="email" name="email" required placeholder="Enter your email" />
         <div class="nav-buttons">
-          <button type="button" class="secondary-btn" onclick="goBack()">Previous</button>
-          <button type="submit" class="secondary-btn">Submit</button>
+          <button type="button" onclick="goBack()" class="nav-btn">Previous</button>
+          <button type="submit" class="nav-btn">Submit</button>
         </div>
       `;
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     form.addEventListener("submit", function (e) {
@@ -254,15 +308,23 @@
         method: form.method,
         body: data,
         headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          window.location.href = "thankyou.html";
-        } else {
-          alert("Submission failed. Please try again.");
-        }
-      }).catch(() => {
-        alert("Submission error. Please try again later.");
-      });
+      })
+        .then(res => res.ok ? window.location.href = "thankyou.html" : alert("Submission failed."))
+        .catch(() => alert("Error submitting form."));
+    });
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      const id = document.getElementById("questionnaireId").value.trim();
+      if (questionSets[id]) {
+        selectedSet = questionSets[id];
+        questions = selectedSet.questions;
+        document.getElementById("formTitle").textContent = selectedSet.title;
+        document.getElementById("idModal").style.display = "none";
+        document.querySelector(".question-container").style.display = "block";
+        showQuestion(current);
+      } else {
+        alert("Invalid ID. Please try 1, 2, or 3.");
+      }
     });
   </script>
 </body>
