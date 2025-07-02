@@ -511,7 +511,7 @@
       questionBox.innerHTML = `
         <label class="question">${currentQ.q}</label>
         <div class="examples-container">${examplesHtml}</div>
-        <input type="text" id="customAnswer" placeholder="Your answer" value="${savedCustom}" />
+        <input type="text" id="customAnswer" placeholder="Clarify your answer (required)" value="${savedCustom}" />
         <div class="nav-buttons">
           ${index > 0 ? `<button type="button" onclick="goBack()" class="nav-btn">Previous</button>` : ""}
           <button type="button" onclick="goNext()" class="nav-btn">Next</button>
@@ -522,7 +522,6 @@
         btn.addEventListener('click', () => {
           btn.classList.toggle("selected");
           const selectedValues = [...document.querySelectorAll(".example-btn.selected")].map(b => b.dataset.value);
-          document.getElementById("customAnswer").value = selectedValues.join(", ");
         });
       });
 
@@ -530,17 +529,23 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function goNext() {
-      const selected = [...document.querySelectorAll(".example-btn.selected")].map(b => b.dataset.value);
-      const custom = document.getElementById("customAnswer").value.trim();
-      answers[current] = {
-        question: questions[current].q,
-        answer: selected,
-        custom: custom
-      };
-      current++;
-      current < questions.length ? showQuestion(current) : buildSubmission();
-    }
+   function goNext() {
+  const selected = [...document.querySelectorAll(".example-btn.selected")].map(b => b.dataset.value);
+  const custom = document.getElementById("customAnswer").value.trim();
+
+  if (!custom) {
+    alert("Please type a clarification in the textbox to continue.");
+    return;
+  }
+
+  answers[current] = {
+    question: questions[current].q,
+    answer: selected,
+    custom: custom
+  };
+  current++;
+  current < questions.length ? showQuestion(current) : buildSubmission();
+}
 
     function goBack() {
       if (current > 0) {
