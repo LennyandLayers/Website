@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Marketing Intake | Lenny and Layers</title>
+  <title>Lenny and Layers</title>
   <link rel="icon" href="images/favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -33,12 +33,17 @@
       text-align: center;
     }
     .question {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-    }
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  padding: 20px; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  flex-wrap: wrap;
+}
     .progress-bar {
       width: 100%;
       height: 8px;
@@ -177,8 +182,8 @@
   <div id="idModal">
     <div id="idModalContent">
       <h2>Enter Your Questionnaire ID</h2>
-      <p>Use the ID provided to you to begin the correct questionnaire.</p>
-      <input type="text" id="questionnaireId" placeholder="e.g. 1 for Starter Kit" />
+      <p>You can combine multiple sets (e.g. 1-2-x) to customize your questionnaire.</p>
+      <input type="text" id="questionnaireId" placeholder="e.g. 1 or 1-2-x" />
       <button id="startBtn">Start</button>
     </div>
   </div>
@@ -214,10 +219,17 @@
           { q: "What story should your brand tell?", examples: ["Natural skincare for confidence", "Empowering youth"] },
           { q: "What kind of brand film would work best?", examples: ["Lifestyle-focused", "Testimonial-based"] }
         ]
+      },
+      "x": {
+        title: "Custom Client Add-On",
+        questions: [
+          { q: "What makes your brand truly unique?", examples: ["Our mission", "Our founder story"] },
+          { q: "What tools or platforms are you currently using?", examples: ["Canva", "Squarespace", "Google Drive"] }
+        ]
       }
     };
 
-    let selectedSet = null;
+    let selectedIds = [];
     let questions = [];
     let current = 0;
     const answers = [];
@@ -284,7 +296,7 @@
     }
 
     function buildSubmission() {
-      let message = selectedSet.questions.map((q, i) => {
+      let message = questions.map((q, i) => {
         const entry = answers[i] || { answer: [], custom: "" };
         return `${i + 1}. ${q.q}\n${entry.custom || entry.answer.join(", ")}`;
       }).join("\n\n");
@@ -314,17 +326,20 @@
     });
 
     document.getElementById("startBtn").addEventListener("click", () => {
-      const id = document.getElementById("questionnaireId").value.trim();
-      if (questionSets[id]) {
-        selectedSet = questionSets[id];
-        questions = selectedSet.questions;
-        document.getElementById("formTitle").textContent = selectedSet.title;
-        document.getElementById("idModal").style.display = "none";
-        document.querySelector(".question-container").style.display = "block";
-        showQuestion(current);
-      } else {
-        alert("Invalid ID. Please try 1, 2, or 3.");
-      }
+      const input = document.getElementById("questionnaireId").value.trim();
+      if (!input) return alert("Please enter an ID.");
+
+      const ids = input.split('-').map(id => id.trim());
+      const validSets = ids.map(id => questionSets[id]).filter(Boolean);
+
+      if (!validSets.length) return alert("Invalid ID(s). Try: 1, 2, 3, x or combinations like 1-2-x.");
+
+      selectedIds = ids;
+      questions = validSets.flatMap(set => set.questions);
+      document.getElementById("formTitle").textContent = validSets.map(set => set.title).join(" + ");
+      document.getElementById("idModal").style.display = "none";
+      document.querySelector(".question-container").style.display = "block";
+      showQuestion(current);
     });
   </script>
 </body>
